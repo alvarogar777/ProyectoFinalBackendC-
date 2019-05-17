@@ -1,0 +1,13 @@
+﻿<Window x:Class="ProyectoFinalBackend.View.ClienteView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoFinalBackend.View"
+        mc:Ignorable="d"
+        Title="ClienteView" Height="300" Width="300">
+    <Grid>
+        <Label x:Name="label" Content="{Binding Nit}" HorizontalAlignment="Left" Margin="88,34,0,0" VerticalAlignment="Top" Width="67" RenderTransformOrigin="0.571,-0.605"/>
+
+    </Grid>
+</Window>
