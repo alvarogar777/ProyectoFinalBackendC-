@@ -15,6 +15,6 @@ namespace ProyectoFinalBackend.Model
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Email { get; set; }
-        public String ProbandoBranch { get; set; }
+        public String ProbandoBranch2 { get; set; }
     }
 }
