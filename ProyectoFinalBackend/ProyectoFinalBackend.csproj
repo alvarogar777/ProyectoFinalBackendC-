@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entity\Inventario.cs" />
+    <Compile Include="Entity\Producto.cs" />
+    <Compile Include="Entity\UserRole.cs" />
     <Compile Include="ModelView\ClienteViewModel.cs" />
     <Compile Include="ModelView\ProveedorViewModel.cs" />
     <Compile Include="ModelView\RoleViewModel.cs" />
@@ -130,13 +133,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelView\CategoriaViewModel.cs" />
-    <Compile Include="Model\Categoria.cs" />
-    <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Entity\Categoria.cs" />
+    <Compile Include="Entity\Cliente.cs" />
     <Compile Include="Model\ControlAlmacenDataContext.cs" />
-    <Compile Include="Model\Proveedor.cs" />
-    <Compile Include="Model\Role.cs" />
-    <Compile Include="Model\TipoEmpaque.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Entity\Proveedor.cs" />
+    <Compile Include="Entity\Role.cs" />
+    <Compile Include="Entity\TipoEmpaque.cs" />
+    <Compile Include="Entity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

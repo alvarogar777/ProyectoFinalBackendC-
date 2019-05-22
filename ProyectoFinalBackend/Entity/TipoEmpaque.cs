@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinalBackend.Model
+namespace ProyectoFinalBackend.Entity
 {
-    public class Categoria
+    public class TipoEmpaque
     {
-        public int CodigoCategoria { get; set; }
+        public int CodigoEmpaque { get; set; }
         public String Descripcion { get; set; }
     }
 }

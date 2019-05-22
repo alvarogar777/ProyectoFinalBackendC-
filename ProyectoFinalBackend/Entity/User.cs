@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinalBackend.Model
+namespace ProyectoFinalBackend.Entity
 {
     public class User
     {
@@ -15,6 +15,6 @@ namespace ProyectoFinalBackend.Model
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Email { get; set; }
-        public String ProbandoBranch { get; set; }
+       
     }
 }

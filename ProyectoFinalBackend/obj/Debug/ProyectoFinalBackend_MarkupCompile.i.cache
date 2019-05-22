@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\
+C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\
 ProyectoFinalBackend
 none
 false
 DEBUG;TRACE
-C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\App.xaml
+C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\App.xaml
 71896084910
 
-282081138559
-17649025811
+32-109488221
+171049897825
 MainWindow.xaml;View\CategoriaView.xaml;View\ClienteView.xaml;View\ProveedorView.xaml;View\RoleView.xaml;View\TipoEmpaqueView.xaml;View\UserView.xaml;
 
 False
