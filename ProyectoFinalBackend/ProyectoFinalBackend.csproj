@@ -68,8 +68,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entity\Compra.cs" />
+    <Compile Include="Entity\DetalleCompra.cs" />
+    <Compile Include="Entity\DetalleFactura.cs" />
+    <Compile Include="Entity\Emailcliente.cs" />
+    <Compile Include="Entity\EmailProveedor.cs" />
+    <Compile Include="Entity\Factura.cs" />
     <Compile Include="Entity\Inventario.cs" />
     <Compile Include="Entity\Producto.cs" />
+    <Compile Include="Entity\TelefonoCliente.cs" />
+    <Compile Include="Entity\TelefonoProveedor.cs" />
     <Compile Include="Entity\UserRole.cs" />
     <Compile Include="ModelView\ClienteViewModel.cs" />
     <Compile Include="ModelView\ProveedorViewModel.cs" />
