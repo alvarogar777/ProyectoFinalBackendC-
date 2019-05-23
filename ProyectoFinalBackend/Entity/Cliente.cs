@@ -12,5 +12,8 @@ namespace ProyectoFinalBackend.Entity
         public String DPI { get; set; }
         public String Nombre { get; set; }
         public String Direccion { get; set; }
+        public virtual ICollection<Factura> Facturas { get; set; }
+        public virtual ICollection<Emailcliente> Emailcliente { get; set; }
+        public virtual ICollection<TelefonoCliente> TelefonoClientes { get; set; }
     }
 }

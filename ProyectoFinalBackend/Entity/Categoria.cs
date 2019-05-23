@@ -10,5 +10,6 @@ namespace ProyectoFinalBackend.Entity
     {
         public int CodigoCategoria { get; set; }
         public String Descripcion { get; set; }
+        public virtual ICollection<Producto> Productos { get; set; }
     }
 }

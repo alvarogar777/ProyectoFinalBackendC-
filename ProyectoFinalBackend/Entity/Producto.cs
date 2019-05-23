@@ -16,6 +16,11 @@ namespace ProyectoFinalBackend.Entity
         public decimal PrecioPorDocena { get; set; }
         public decimal PrecioPorMayor { get; set; }
         public int Existencia { get; set; }
-        public String Imagen { get; set; }
+        public String Imagen { get; set; } 
+        public virtual TipoEmpaque TipoEmpaque { get; set; }
+        public virtual Categoria Categoria { get; set; }
+        public virtual ICollection<Inventario> Inventarios { get; set; }
+        public virtual ICollection<DetalleCompra> DetallesCompras { get; set; }
+        public virtual ICollection<DetalleFactura> DetalleFacturas { get; set; }
     }
 }

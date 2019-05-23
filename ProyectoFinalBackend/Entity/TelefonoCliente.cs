@@ -12,5 +12,6 @@ namespace ProyectoFinalBackend.Entity
         public String Numero { get; set; }
         public String Descripcion { get; set; }
         public String Nit { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

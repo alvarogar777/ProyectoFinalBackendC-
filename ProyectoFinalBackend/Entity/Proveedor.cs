@@ -14,5 +14,8 @@ namespace ProyectoFinalBackend.Entity
         public String Direccion { get; set; }
         public String Pagina_Web { get; set; }
         public String ContactoPrincipal { get; set; }
+        public virtual ICollection<Compra> Compras { get; set; }
+        public virtual ICollection<EmailProveedor> EmailProveedores { get; set; }
+        public virtual ICollection<TelefonoProveedor> TelefonoProveedores { get; set; }
     }
 }

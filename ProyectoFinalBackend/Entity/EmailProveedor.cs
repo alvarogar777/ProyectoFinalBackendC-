@@ -11,5 +11,6 @@ namespace ProyectoFinalBackend.Entity
         public int CodigoEmail { get; set; }
         public String Email { get; set; }
         public int CodigoProveedor { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
     }
 }

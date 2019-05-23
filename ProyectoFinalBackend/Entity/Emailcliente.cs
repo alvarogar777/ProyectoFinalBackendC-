@@ -11,6 +11,7 @@ namespace ProyectoFinalBackend.Entity
         public int CodigoEmail { get; set; }
         public String email { get; set; }
         public String Nit { get; set; }
+        public virtual Cliente Cliente { get; set; }
 
     }
 }

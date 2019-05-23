@@ -10,5 +10,6 @@ namespace ProyectoFinalBackend.Entity
     {
         public int ID { get; set; }
         public String Name { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

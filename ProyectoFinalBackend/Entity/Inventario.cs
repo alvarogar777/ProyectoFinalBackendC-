@@ -15,5 +15,6 @@ namespace ProyectoFinalBackend.Entity
         public decimal Precio { get; set; }
         public int Entradas { get; set; }
         public int Salidas { get; set;  }
+        public virtual Producto Producto { get; set; }
     }
 }
