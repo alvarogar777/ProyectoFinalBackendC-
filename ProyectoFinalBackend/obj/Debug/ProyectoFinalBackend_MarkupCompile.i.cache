@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\
+C:\Users\Alvaro\Documents\Visual Studio 2017\Proyects\ProyectoFinalBackendC-\ProyectoFinalBackend\obj\Debug\
 ProyectoFinalBackend
 none
 false
 DEBUG;TRACE
-C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\App.xaml
-71896084910
+C:\Users\Alvaro\Documents\Visual Studio 2017\Proyects\ProyectoFinalBackendC-\ProyectoFinalBackend\App.xaml
+181155110516
 
-391159110907
-171049897825
-MainWindow.xaml;View\CategoriaView.xaml;View\ClienteView.xaml;View\ProveedorView.xaml;View\RoleView.xaml;View\TipoEmpaqueView.xaml;View\UserView.xaml;
+611935011135
+19-1964793238
+MainWindow.xaml;View\CategoriaView.xaml;View\ClienteView.xaml;View\CompraView.xaml;View\DetalleCompraView.xaml;View\DetalleFacturaView.xaml;View\EmailClienteView.xaml;View\EmailProveedorView.xaml;View\FacturaView.xaml;View\InventarioView.xaml;View\ProductoView.xaml;View\ProveedorView.xaml;View\RoleView.xaml;View\TelefonoClienteView.xaml;View\TelefonoProveedorView.xaml;View\TipoEmpaqueView.xaml;View\UserRoleView.xaml;View\UserView.xaml;
 
 False
 
