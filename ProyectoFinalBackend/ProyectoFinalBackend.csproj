@@ -50,6 +50,8 @@
       <HintPath>..\packages\System.Data.Entity.Repository.2.0.0.1\lib\net45\System.Data.Entity.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -80,9 +82,20 @@
     <Compile Include="Entity\TelefonoProveedor.cs" />
     <Compile Include="Entity\UserRole.cs" />
     <Compile Include="ModelView\ClienteViewModel.cs" />
+    <Compile Include="ModelView\CompraViewModel.cs" />
+    <Compile Include="ModelView\DetalleCompraModelView.cs" />
+    <Compile Include="ModelView\DetalleFacturaViewModel.cs" />
+    <Compile Include="ModelView\EmailClienteViewModel.cs" />
+    <Compile Include="ModelView\EmailProveedorViewModel.cs" />
+    <Compile Include="ModelView\FacturaViewModel.cs" />
+    <Compile Include="ModelView\InventarioViewModel.cs" />
+    <Compile Include="ModelView\ProductoViewModel.cs" />
     <Compile Include="ModelView\ProveedorViewModel.cs" />
     <Compile Include="ModelView\RoleViewModel.cs" />
+    <Compile Include="ModelView\TelefonoClienteViewModel.cs" />
+    <Compile Include="ModelView\TelefonoProveedorViewModel.cs" />
     <Compile Include="ModelView\TipoEmpaqueViewModel.cs" />
+    <Compile Include="ModelView\UserRoleViewModel.cs" />
     <Compile Include="ModelView\UserViewModel.cs" />
     <Compile Include="View\CategoriaView.xaml.cs">
       <DependentUpon>CategoriaView.xaml</DependentUpon>
@@ -90,14 +103,47 @@
     <Compile Include="View\ClienteView.xaml.cs">
       <DependentUpon>ClienteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CompraView.xaml.cs">
+      <DependentUpon>CompraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetalleCompraView.xaml.cs">
+      <DependentUpon>DetalleCompraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetalleFacturaView.xaml.cs">
+      <DependentUpon>DetalleFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmailClienteView.xaml.cs">
+      <DependentUpon>EmailClienteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmailProveedorView.xaml.cs">
+      <DependentUpon>EmailProveedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FacturaView.xaml.cs">
+      <DependentUpon>FacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InventarioView.xaml.cs">
+      <DependentUpon>InventarioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductoView.xaml.cs">
+      <DependentUpon>ProductoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProveedorView.xaml.cs">
       <DependentUpon>ProveedorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RoleView.xaml.cs">
       <DependentUpon>RoleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TelefonoClienteView.xaml.cs">
+      <DependentUpon>TelefonoClienteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TelefonoProveedorView.xaml.cs">
+      <DependentUpon>TelefonoProveedorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TipoEmpaqueView.xaml.cs">
       <DependentUpon>TipoEmpaqueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserRoleView.xaml.cs">
+      <DependentUpon>UserRoleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -122,6 +168,38 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CompraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DetalleCompraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DetalleFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmailClienteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmailProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InventarioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProveedorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,7 +208,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\TelefonoClienteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TelefonoProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\TipoEmpaqueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserRoleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

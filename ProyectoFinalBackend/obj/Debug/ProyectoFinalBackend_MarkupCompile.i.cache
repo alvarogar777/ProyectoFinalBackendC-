@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\App.xaml
-71896084910
+181155110516
 
-391159110907
-171049897825
-MainWindow.xaml;View\CategoriaView.xaml;View\ClienteView.xaml;View\ProveedorView.xaml;View\RoleView.xaml;View\TipoEmpaqueView.xaml;View\UserView.xaml;
+61394346134
+191078349986
+MainWindow.xaml;View\CategoriaView.xaml;View\ClienteView.xaml;View\CompraView.xaml;View\DetalleCompraView.xaml;View\DetalleFacturaView.xaml;View\EmailClienteView.xaml;View\EmailProveedorView.xaml;View\FacturaView.xaml;View\InventarioView.xaml;View\ProductoView.xaml;View\ProveedorView.xaml;View\RoleView.xaml;View\TelefonoClienteView.xaml;View\TelefonoProveedorView.xaml;View\TipoEmpaqueView.xaml;View\UserRoleView.xaml;View\UserView.xaml;
 
-False
+True
 
