@@ -11,14 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 using ProyectoFinalBackend.ModelView;
+using MahApps.Metro.Controls;
 
 namespace ProyectoFinalBackend.View
 {
     /// <summary>
     /// Interaction logic for CategoriaView.xaml
     /// </summary>
-    public partial class CategoriaView : Window
+    public partial class CategoriaView : MetroWindow
     {
         public CategoriaView()
         {
