@@ -111,6 +111,7 @@
     <Compile Include="ModelView\TipoEmpaqueViewModel.cs" />
     <Compile Include="ModelView\UserRoleViewModel.cs" />
     <Compile Include="ModelView\UserViewModel.cs" />
+    <Compile Include="Model\CategoriaModel.cs" />
     <Compile Include="View\CategoriaView.xaml.cs">
       <DependentUpon>CategoriaView.xaml</DependentUpon>
     </Compile>

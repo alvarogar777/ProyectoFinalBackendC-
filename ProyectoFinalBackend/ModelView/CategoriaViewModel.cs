@@ -16,40 +16,29 @@ namespace ProyectoFinalBackend.ModelView
 {
     public class CategoriaViewModel : INotifyPropertyChanged, ICommand
     {
-
-        private ControlAlmacenDataContext db = new ControlAlmacenDataContext();
         private CategoriaViewModel _Instancia;
         private ObservableCollection<Categoria> _Categoria;
-        private Boolean _IsReadOnlyDescripcion = true;
+        private Boolean _IsReadOnlyDescripcion = false;
+        CategoriaModel categoriaModel = new CategoriaModel();
 
         private string _Descripcion;
-        
+
 
         public CategoriaViewModel()
         {
-            
             this.Instancia = this;
         }
-
 
         public ObservableCollection<Categoria> Categorias
         {
             get
             {
-                if (this._Categoria == null)
-                {
-                    this._Categoria = new ObservableCollection<Categoria>();
-                    foreach (Categoria elemento in db.Categorias.ToList())
-                    {
-                        this._Categoria.Add(elemento);
-                    }
-                }
-
+                this._Categoria = categoriaModel.ShowList;
                 return this._Categoria;
             }
             set { this._Categoria = value; }
-
         }
+
 
         public CategoriaViewModel Instancia
         {
@@ -72,7 +61,7 @@ namespace ProyectoFinalBackend.ModelView
             set
             {
                 this._Descripcion = value;
-                ChangeNotify("Name");
+                ChangeNotify("Descripcion");
             }
         }
 
@@ -89,7 +78,7 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
-
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
    
@@ -110,30 +99,32 @@ namespace ProyectoFinalBackend.ModelView
 
         public async void Execute(object parameter)
         {
+            bool result;
             if (parameter.Equals("Add"))
             {
-           
-                var metroWindow = (Application.Current.MainWindow as MetroWindow);
-                var resultado= await metroWindow.ShowMessageAsync("Agregando", "Desea Agregar una nueva categoria",MessageDialogStyle.AffirmativeAndNegative
-                    , new MetroDialogSettings
-                    {
-                        AffirmativeButtonText = "Si",
-                        NegativeButtonText = "No",
-                        AnimateShow = true,
-                        AnimateHide = false
-                    });
-                if (resultado == MessageDialogResult.Affirmative)
+                result = await categoriaModel.Add();
+                if (result == true)
                 {
-                    await metroWindow.ShowMessageAsync("Exito", "Agregado exitosamente");
-
                     this.IsReadOnlyDescripcion = false;
-                }
                 
-
+                }
+            }
+            if (parameter.Equals("Save"))
+            {
+                var metroWindow = (Application.Current.MainWindow as MetroWindow);
+                this.Descripcion = "";
+                if (this.Descripcion.Equals("")){
+                    await metroWindow.ShowMessageAsync("Error", "Ingrese Una categoria");
+                }
+                else
+                {
+                    await metroWindow.ShowMessageAsync("Exito", "Categoria ingresada exitosamente");
+                    this.Categorias.Add(categoriaModel.Save(this.Descripcion));
+                    this.Descripcion = "";
+                    this.IsReadOnlyDescripcion = true;
+                }                  
 
             }
-
-
         }
 
 

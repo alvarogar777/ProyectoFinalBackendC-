@@ -9,7 +9,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Categorias" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Categorias" Height="600" Width="900" WindowStartupLocation="CenterScreen">
 
     <Grid>
 
@@ -21,23 +21,27 @@
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="129*"></ColumnDefinition>
+            <ColumnDefinition Width="318*"/>
+            <ColumnDefinition Width="69*"></ColumnDefinition>
+            <ColumnDefinition Width="256*"/>
+            <ColumnDefinition Width="123*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Descripción" Grid.Row="0" Grid.Column="0" Margin="136,43,98.8,74.8" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="20" FontFamily="Arial Black"/>
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="396,45,9.6,72.8" Grid.ColumnSpan="2" FontFamily="Arial" FontSize="20" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción"/>
+        <Label Content="Descripción" Grid.Row="0" Grid.Column="1" Margin="0.2,83,120.4,74.4" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.6,83,9.6,74.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción" Grid.Column="2"  />
 
 
-        <DataGrid ItemsSource="{Binding Categorias}" Grid.ColumnSpan="2" Margin="136,106,127.6,19.6" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black"  />
+        <DataGrid ItemsSource="{Binding Categorias}" Grid.ColumnSpan="3" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" Grid.Column="1" ForceCursor="True"  />
 
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="237,142.2,202.6,45.4" Grid.RowSpan="2" Cursor="Hand">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="166.2,54.2,160.4,0.4" Cursor="Hand" Grid.Column="1" ForceCursor="True">
             <Button Content="Agregar" Command="{Binding Instancia}" CommandParameter="Add"  Background="#FF192648" BorderBrush="Black" BorderThickness="1"/>
             <Button Content="Actualizar" BorderBrush="Black" Background="#FF334619"/>
             <Button Content="Guardar" Command="{Binding Instancia}" CommandParameter="Save" BorderBrush="Black" Background="#FF949F12"/>
             <Button Content="Eliminar" Background="#FF730F0F" BorderBrush="Black" />
-            <Button Content="Menú" BorderBrush="Black" Background="#FF1E7463"/>
+            <Button Content="Menú" BorderBrush="Black" Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
         </StackPanel>
+        <Label x:Name="label" Grid.ColumnSpan="3" Content="Categoria de Ropa" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
 
     </Grid>
 </Controls:MetroWindow>
