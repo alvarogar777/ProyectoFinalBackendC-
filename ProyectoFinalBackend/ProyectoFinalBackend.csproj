@@ -112,6 +112,12 @@
     <Compile Include="ModelView\UserRoleViewModel.cs" />
     <Compile Include="ModelView\UserViewModel.cs" />
     <Compile Include="Model\CategoriaModel.cs" />
+    <Compile Include="Model\ClienteModel.cs" />
+    <Compile Include="Model\ProductoModel.cs" />
+    <Compile Include="Model\TipoEmpaqueModel.cs" />
+    <Compile Include="View\TipoEmpaqueView.xaml.cs">
+      <DependentUpon>TipoEmpaqueView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CategoriaView.xaml.cs">
       <DependentUpon>CategoriaView.xaml</DependentUpon>
     </Compile>
@@ -154,9 +160,6 @@
     <Compile Include="View\TelefonoProveedorView.xaml.cs">
       <DependentUpon>TelefonoProveedorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TipoEmpaqueView.xaml.cs">
-      <DependentUpon>TipoEmpaqueView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\UserRoleView.xaml.cs">
       <DependentUpon>UserRoleView.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\IconsNonShared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TipoEmpaqueView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -236,10 +243,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TelefonoProveedorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TipoEmpaqueView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

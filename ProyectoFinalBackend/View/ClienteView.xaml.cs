@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using ProyectoFinalBackend.ModelView;
 
 namespace ProyectoFinalBackend.View
@@ -18,7 +19,7 @@ namespace ProyectoFinalBackend.View
     /// <summary>
     /// Interaction logic for ClienteView.xaml
     /// </summary>
-    public partial class ClienteView : Window
+    public partial class ClienteView : MetroWindow
     {
         public ClienteView()
         {

@@ -18,7 +18,7 @@ namespace ProyectoFinalBackend.ModelView
     {
         private CategoriaViewModel _Instancia;
         private ObservableCollection<Categoria> _Categoria;
-        private Boolean _IsReadOnlyDescripcion = false;
+        private Boolean _IsReadOnlyDescripcion = true;
         CategoriaModel categoriaModel = new CategoriaModel();
 
         private string _Descripcion;
@@ -27,6 +27,7 @@ namespace ProyectoFinalBackend.ModelView
         public CategoriaViewModel()
         {
             this.Instancia = this;
+            this.Descripcion = "";
         }
 
         public ObservableCollection<Categoria> Categorias
@@ -112,9 +113,10 @@ namespace ProyectoFinalBackend.ModelView
             if (parameter.Equals("Save"))
             {
                 var metroWindow = (Application.Current.MainWindow as MetroWindow);
-                this.Descripcion = "";
+                
+     
                 if (this.Descripcion.Equals("")){
-                    await metroWindow.ShowMessageAsync("Error", "Ingrese Una categoria");
+                   await metroWindow.ShowMessageAsync("Error", "Ingrese Una categoria");
                 }
                 else
                 {

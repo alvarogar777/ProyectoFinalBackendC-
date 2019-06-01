@@ -11,17 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
+using ProyectoFinalBackend.ModelView;
 
 namespace ProyectoFinalBackend.View
 {
     /// <summary>
     /// Lógica de interacción para ProductoView.xaml
     /// </summary>
-    public partial class ProductoView : Window
+    public partial class ProductoView :  MetroWindow
     {
         public ProductoView()
         {
             InitializeComponent();
+            this.DataContext = new ProductoViewModel();
         }
     }
 }

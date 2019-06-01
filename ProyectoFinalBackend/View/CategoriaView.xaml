@@ -27,8 +27,8 @@
             <ColumnDefinition Width="256*"/>
             <ColumnDefinition Width="123*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Descripción" Grid.Row="0" Grid.Column="1" Margin="0.2,83,120.4,74.4" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.6,83,9.6,74.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción" Grid.Column="2"  />
+        <Label Content="Descripción" Grid.Row="0" Grid.Column="1" Margin="0.2,49,120.4,108.4" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.6,53,9.6,104.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción" Grid.Column="2"  />
 
 
         <DataGrid ItemsSource="{Binding Categorias}" Grid.ColumnSpan="3" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" Grid.Column="1" ForceCursor="True"  />
@@ -41,7 +41,7 @@
             <Button Content="Eliminar" Background="#FF730F0F" BorderBrush="Black" />
             <Button Content="Menú" BorderBrush="Black" Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
         </StackPanel>
-        <Label x:Name="label" Grid.ColumnSpan="3" Content="Categoria de Ropa" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
+        <Label x:Name="label" Grid.ColumnSpan="3" Content="Categoría de Ropa" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
 
     </Grid>
 </Controls:MetroWindow>
