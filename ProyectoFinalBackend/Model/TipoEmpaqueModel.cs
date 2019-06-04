@@ -4,6 +4,7 @@ using ProyectoFinalBackend.Entity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +64,21 @@ namespace ProyectoFinalBackend.Model
             db.TipoEmpaques.Add(nuevo);
             db.SaveChanges();
             return nuevo;
+        }
+
+        public void Delete(TipoEmpaque selectTipoEmpaque)
+        {
+            db.TipoEmpaques.Remove(selectTipoEmpaque);
+            db.SaveChanges();
+        }
+
+        public dynamic update(int CodigoEmpaque, string descripcion)
+        {
+            var updatTipoEmpaque = this.db.TipoEmpaques.Find(CodigoEmpaque);
+            updatTipoEmpaque.Descripcion = descripcion;
+            this.db.Entry(updatTipoEmpaque).State = EntityState.Modified;
+            this.db.SaveChanges();
+            return updatTipoEmpaque;
         }
     }
 }
