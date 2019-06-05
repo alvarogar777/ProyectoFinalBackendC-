@@ -103,6 +103,7 @@
     <Compile Include="ModelView\EmailProveedorViewModel.cs" />
     <Compile Include="ModelView\FacturaViewModel.cs" />
     <Compile Include="ModelView\InventarioViewModel.cs" />
+    <Compile Include="ModelView\MainViewModel.cs" />
     <Compile Include="ModelView\ProductoViewModel.cs" />
     <Compile Include="ModelView\ProveedorViewModel.cs" />
     <Compile Include="ModelView\RoleViewModel.cs" />
@@ -297,6 +298,26 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\clientes.png" />
+    <Resource Include="Imagenes\Inventario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\categoria.png" />
+    <Resource Include="Imagenes\detallecompra.png" />
+    <Resource Include="Imagenes\email.jpg" />
+    <Resource Include="Imagenes\producto.png" />
+    <Resource Include="Imagenes\telefono.jpg" />
+    <Resource Include="Imagenes\TipoEmpaque.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\email2.png" />
+    <Resource Include="Imagenes\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\compra.png" />
+    <Resource Include="Imagenes\factura.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
