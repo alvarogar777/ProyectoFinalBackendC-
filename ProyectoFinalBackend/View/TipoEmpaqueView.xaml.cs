@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 using ProyectoFinalBackend.ModelView;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace ProyectoFinalBackend.View
 {
@@ -25,7 +26,9 @@ namespace ProyectoFinalBackend.View
         public TipoEmpaqueView()
         {
             InitializeComponent();
-            this.DataContext = new TipoEmpaqueViewModel();
+            this.DataContext = new TipoEmpaqueViewModel(this);
+
         }
+
     }
 }

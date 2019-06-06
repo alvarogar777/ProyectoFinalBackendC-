@@ -6,10 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoFinalBackend.View"
         mc:Ignorable="d"
+    
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Tipo Empaque" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+        Title="Tipo Empaque" Height="600" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
 
     <Grid>
 

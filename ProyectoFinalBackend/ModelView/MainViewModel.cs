@@ -13,12 +13,26 @@ namespace ProyectoFinalBackend.ModelView
     {
         public event EventHandler CanExecuteChanged;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        //private MainWindow main;
         public MainViewModel Instancia { get; set; }
         public MainViewModel()
         {
             this.Instancia = this;
+            //this.Main = main;
         }
+
+        //public MainWindow Main
+        //{
+        //    get
+        //    {
+        //        return this.main;
+        //    }
+        //    set
+        //    {
+        //        this.main = value;
+        //    }
+        //}
+
 
         public bool CanExecute(object parameter)
         {
@@ -27,6 +41,7 @@ namespace ProyectoFinalBackend.ModelView
 
         public void Execute(object parameter)
         {
+            //Main.Hide();
             if (parameter.Equals("TipoEmpaque"))
             {
                 new TipoEmpaqueView().ShowDialog();
@@ -83,7 +98,7 @@ namespace ProyectoFinalBackend.ModelView
             {
                 new FacturaView().ShowDialog();
             }
-
+            
         }
     }
 }

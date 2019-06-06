@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using ProyectoFinalBackend.Entity;
+using ProyectoFinalBackend.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,10 +37,10 @@ namespace ProyectoFinalBackend.Model
 
         }
 
-        public async Task<bool> Add()
+        public async Task<bool> Add(TipoEmpaqueView mensaje)
         {
             var metroWindow = (Application.Current.MainWindow as MetroWindow);
-            var resultado = await metroWindow.ShowMessageAsync("Agregando", "Desea Agregar un nuevo Empaque",
+            var resultado = await mensaje.ShowMessageAsync("Agregando", "Desea Agregar un nuevo Empaque",
                 MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
                 {
                     AffirmativeButtonText = "Si",

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using ProyectoFinalBackend.View;
 
 namespace ProyectoFinalBackend.ModelView
 {
@@ -31,6 +32,7 @@ namespace ProyectoFinalBackend.ModelView
         private ObservableCollection<TipoEmpaque> _TipoEmpaque;
         TipoEmpaqueModel tipoEmpaque = new TipoEmpaqueModel();
         private TipoEmpaque _SelectTipoEmpaque;
+        private TipoEmpaqueView _mensajes;
         private ACCION accion = ACCION.NINGUNO;
         private bool _IsReadOnlyDescripcion = true;        
         private string _Descripcion;
@@ -44,10 +46,11 @@ namespace ProyectoFinalBackend.ModelView
         #endregion
 
         #region Constructores
-        public TipoEmpaqueViewModel()
+        public TipoEmpaqueViewModel(TipoEmpaqueView tipoEmpaqueView)
         {
             this.Instancia = this;
             borrarCampos();
+            Mensajes = tipoEmpaqueView;
         }
         #endregion
 
@@ -75,7 +78,19 @@ namespace ProyectoFinalBackend.ModelView
                 this._Instancia = value;
             }
         }
-                
+
+        public TipoEmpaqueView Mensajes
+        {
+            get
+            {
+                return this._mensajes;
+            }
+            set
+            {
+                this._mensajes = value;
+            }
+        }
+
         public string Descripcion
         {
             get
@@ -261,8 +276,7 @@ namespace ProyectoFinalBackend.ModelView
         public async void add()
         {
             bool result;
-            var metroWindow = (Application.Current.MainWindow as MetroWindow);
-            result = await tipoEmpaque.Add();
+            result = await tipoEmpaque.Add(Mensajes);
             if (result == true)
             {
                 isEnabledAdd();
@@ -271,17 +285,16 @@ namespace ProyectoFinalBackend.ModelView
 
         public async void save()
         {
-            var metroWindow = (Application.Current.MainWindow as MetroWindow);
             switch (this.accion)
             {
                 case ACCION.NUEVO:
                     if (this.Descripcion.Equals(""))
                     {
-                        await metroWindow.ShowMessageAsync("Error", "Ingrese Un tipo de empaque");
+                        await Mensajes.ShowMessageAsync("Error", "Ingrese Un tipo de empaque");
                     }
                     else
                     {
-                        await metroWindow.ShowMessageAsync("Exito", "Tipo ingresado exitosamente");
+                        await Mensajes.ShowMessageAsync("Exito", "Tipo ingresado exitosamente");
                         this.TipoEmpaques.Add(tipoEmpaque.Save(this.Descripcion));
                         borrarCampos();
                         isEnableSave();
@@ -298,23 +311,23 @@ namespace ProyectoFinalBackend.ModelView
                                 var updatTipoEmpaque = tipoEmpaque.update(this.SelectTipoEmpaque.CodigoEmpaque, this.Descripcion);
                                 this.TipoEmpaques.RemoveAt(posicion);
                                 this.TipoEmpaques.Insert(posicion, updatTipoEmpaque);
-                                await metroWindow.ShowMessageAsync("Exito", "Registro actualizado correctamente");
+                                await Mensajes.ShowMessageAsync("Exito", "Registro actualizado correctamente");
                                 isEnableActualizar();
                                 borrarCampos();
                             }
                             else
                             {
-                                await metroWindow.ShowMessageAsync("Actualizar", "Debe ingresar todos los campos");
+                                await Mensajes.ShowMessageAsync("Actualizar", "Debe ingresar todos los campos");
                             }
                         }
                         else
                         {
-                            await metroWindow.ShowMessageAsync("Error", "Ingrese una descripción");
+                            await Mensajes.ShowMessageAsync("Error", "Ingrese una descripción");
                         }
                     }
                     catch (Exception e)
                     {
-                        await metroWindow.ShowMessageAsync("Error", "Seleccione una fila para actualizar");
+                        await Mensajes.ShowMessageAsync("Error", "Seleccione una fila para actualizar");
                         isEnableErrorActualizar();
                         borrarCampos();
                     }
@@ -322,25 +335,23 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
-        public async void update()
+        public  void update()
         {
-            var metroWindow = (Application.Current.MainWindow as MetroWindow);
             if (this.SelectTipoEmpaque != null)
             {
                 isEnableUpdate();
             }
             else
             {
-                await metroWindow.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
+                Mensajes.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
             }
         }
 
         public async void delete()
         {
-            var metroWindow = (Application.Current.MainWindow as MetroWindow);
             if (this.SelectTipoEmpaque != null)
             {
-                var respuesta = await metroWindow.ShowMessageAsync("Esta seguro de eliminar el registro", "Eliminar",
+                var respuesta = await Mensajes.ShowMessageAsync("Esta seguro de eliminar el registro", "Eliminar",
                 MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
                 {
                     AffirmativeButtonText = "Si",
@@ -364,18 +375,18 @@ namespace ProyectoFinalBackend.ModelView
                         MessageBox.Show(e.Message);
                     }
                     this.SelectTipoEmpaque = null;
-                    await metroWindow.ShowMessageAsync("Exito", "Registro eliminado Correctamente");
+                    await Mensajes.ShowMessageAsync("Exito", "Registro eliminado Correctamente");
                 }
 
                 else
                 {
-                    await metroWindow.ShowMessageAsync("Eliminar", "No se elimino ningun registro");
+                    await Mensajes.ShowMessageAsync("Eliminar", "No se elimino ningun registro");
 
                 }
             }
             else
             {
-                await metroWindow.ShowMessageAsync("Eliminar", "Debe seleccionar un registro");
+                await Mensajes.ShowMessageAsync("Eliminar", "Debe seleccionar un registro");
             }
         }
 
