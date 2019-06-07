@@ -9,7 +9,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Categorias" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+        Title="Categorias" Height="600" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
 
     <Grid>
 
@@ -17,8 +17,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="129*"></ColumnDefinition>
@@ -31,17 +29,35 @@
         <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.6,53,9.6,104.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción" Grid.Column="2"  />
 
 
-        <DataGrid ItemsSource="{Binding Categorias}" Grid.ColumnSpan="3" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" Grid.Column="1" ForceCursor="True"  />
+        <!--<DataGrid SelectedItem="{Binding SelectTipoEmpaque}" ItemsSource="{Binding TipoEmpaques}" Grid.ColumnSpan="3" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" Grid.Column="1" ForceCursor="True"  />-->
 
+        <DataGrid Name="categoria"
+              SelectedItem="{Binding Path=SelectCategoria}"
+              ItemsSource="{Binding Path=Categorias}"
+              Grid.Row="1"
+              FontFamily="Arial"
+           
+              AutoGenerateColumns="False" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn 
+                                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    Header="Seleccionar"
+                                    Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                    />
+                <DataGridTextColumn Header="Codigo" Binding="{Binding CodigoCategoria}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="166.2,54.2,160.4,0.4" Cursor="Hand" Grid.Column="1" ForceCursor="True">
-            <Button Content="Agregar" Command="{Binding Instancia}" CommandParameter="Add"  Background="#FF192648" BorderBrush="Black" BorderThickness="1"/>
-            <Button Content="Actualizar" BorderBrush="Black" Background="#FF334619"/>
-            <Button Content="Guardar" Command="{Binding Instancia}" CommandParameter="Save" BorderBrush="Black" Background="#FF949F12"/>
-            <Button Content="Eliminar" Background="#FF730F0F" BorderBrush="Black" />
-            <Button Content="Menú" BorderBrush="Black" Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
+            <Button Content="Agregar"       IsEnabled="{Binding IsEnabledAdd }"     Command="{Binding Instancia}"   CommandParameter="Add"    Background="#FF192648" BorderBrush="Black" BorderThickness="1"/>
+            <Button Content="Actualizar"    IsEnabled="{Binding IsEnableUpdate }"   Command="{Binding Instancia}"   CommandParameter="Update" BorderBrush="Black"    Background="#FF334619"/>
+            <Button Content="Eliminar"      IsEnabled="{Binding IsEnabledDelete }"  Command="{Binding Instancia}"   CommandParameter="Delete" Background="#FF730F0F" BorderBrush="Black" />
+            <Button Content="Guardar"       IsEnabled="{Binding IsEnableSave}"     Command="{Binding Instancia}"   CommandParameter="Save"   BorderBrush="Black"    Background="#FF949F12" Margin="0,0,0,0.2"/>
+            <Button Content="Cancelar"          IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
         </StackPanel>
-        <Label x:Name="label" Grid.ColumnSpan="3" Content="Categoría de Ropa" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
+        <Label x:Name="label" Grid.ColumnSpan="3" Content="Categorías" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
 
     </Grid>
 </Controls:MetroWindow>

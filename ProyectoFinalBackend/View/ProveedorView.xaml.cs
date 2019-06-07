@@ -12,18 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProyectoFinalBackend.ModelView;
+using MahApps.Metro.Controls;
 
 namespace ProyectoFinalBackend.View
 {
     /// <summary>
     /// Interaction logic for ProveedorView.xaml
     /// </summary>
-    public partial class ProveedorView : Window
+    public partial class ProveedorView : MetroWindow
     {
         public ProveedorView()
         {
             InitializeComponent();
-            this.DataContext = new ProveedorViewModel();
+            this.DataContext = new ProveedorViewModel(this);
         }
     }
 }

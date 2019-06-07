@@ -1,9 +1,11 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using ProyectoFinalBackend.Entity;
+using ProyectoFinalBackend.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,10 +37,9 @@ namespace ProyectoFinalBackend.Model
 
         }
 
-        public async Task<bool> Add()
+        public async Task<bool> Add(CategoriaView mensaje)
         {
-            var metroWindow = (Application.Current.MainWindow as MetroWindow);
-            var resultado = await metroWindow.ShowMessageAsync("Agregando", "Desea Agregar una nueva categoria",
+            var resultado = await mensaje.ShowMessageAsync("Agregando", "Desea Agregar una nueva categoria",
                 MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
                 {
                     AffirmativeButtonText = "Si",
@@ -63,6 +64,21 @@ namespace ProyectoFinalBackend.Model
             db.Categorias.Add(nuevo);
             db.SaveChanges();
             return nuevo;        
+        }
+
+        public void Delete(Categoria selectCategoria)
+        {
+            db.Categorias.Remove(selectCategoria);
+            db.SaveChanges();
+        }
+
+        public dynamic update(int CodigoCategoria, string descripcion)
+        {
+            var updatCategoria = this.db.Categorias.Find(CodigoCategoria);
+            updatCategoria.Descripcion = descripcion;
+            this.db.Entry(updatCategoria).State = EntityState.Modified;
+            this.db.SaveChanges();
+            return updatCategoria;
         }
 
     }

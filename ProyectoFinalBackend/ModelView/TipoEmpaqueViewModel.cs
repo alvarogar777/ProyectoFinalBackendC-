@@ -269,6 +269,7 @@ namespace ProyectoFinalBackend.ModelView
         public void borrarCampos()
         {
             this.Descripcion = "";
+            this.TipoEmpaques.IndexOf(null);
         }
         #endregion
 

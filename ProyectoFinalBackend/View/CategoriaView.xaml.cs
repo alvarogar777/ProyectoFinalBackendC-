@@ -25,7 +25,7 @@ namespace ProyectoFinalBackend.View
         public CategoriaView()
         {
             InitializeComponent();
-            this.DataContext = new CategoriaViewModel();
+            this.DataContext = new CategoriaViewModel(this);
         }
     }
 }
