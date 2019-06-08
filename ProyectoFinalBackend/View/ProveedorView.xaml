@@ -29,11 +29,11 @@
         <Label Content="Pagina web" Grid.Row="0" Grid.Column="1" Margin="0.4,152,120.6,5" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
         <Label Content="Contacto Principal" Grid.Row="1" Grid.Column="1" Margin="0.4,0,120.6,157" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
 
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Nit}" Margin="0.4,31,9,126" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit" Grid.Column="2"  />
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Razon_Social}" Margin="319.4,73,10,84" Grid.ColumnSpan="4" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit" Grid.Column="1"  />
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Direccion}" Margin="319.4,116,10,41" Grid.ColumnSpan="4" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit" Grid.Column="1"  />
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Pagina_Web}" Margin="0.4,157,9,0" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit" Grid.Column="2"  />
-        <TextBox Grid.Row="1" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding ContactoPrincipal}" Margin="319.4,0,10,157" Grid.ColumnSpan="4" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit" Grid.Column="1"  />
+        <TextBox Name="DescripcionFocus" Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Nit}" Margin="0.4,31,9,126" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit" Grid.Column="2"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Razon_Social}" Margin="319.4,73,10,84" Grid.ColumnSpan="4" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una Razón social" Grid.Column="1"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Direccion}" Margin="319.4,116,10,41" Grid.ColumnSpan="4" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una Dirección" Grid.Column="1"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Pagina_Web}" Margin="0.4,157,9,0" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una pagina web" Grid.Column="2"  />
+        <TextBox Grid.Row="1" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding ContactoPrincipal}" Margin="319.4,0,10,157" Grid.ColumnSpan="4" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un contacto principal" Grid.Column="1"  />
 
         <!--<DataGrid SelectedItem="{Binding SelectTipoEmpaque}" ItemsSource="{Binding TipoEmpaques}" Grid.ColumnSpan="3" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" Grid.Column="1" ForceCursor="True"  />-->
 
@@ -53,6 +53,9 @@
                                     />
                 <DataGridTextColumn Header="Codigo" Binding="{Binding CodigoProveedor}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Nit" Binding="{Binding Nit}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="RAZON SOCIAL" Binding="{Binding Razon_Social}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="DIRECCION" Binding="{Binding Direccion}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="PAGINA WEB" Binding="{Binding Pagina_Web}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

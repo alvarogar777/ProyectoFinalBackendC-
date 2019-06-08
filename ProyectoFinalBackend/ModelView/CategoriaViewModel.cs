@@ -220,7 +220,7 @@ namespace ProyectoFinalBackend.ModelView
 
         public void isEnableActualizar()
         {
-            this.IsReadOnlyDescripcion = false;
+            this.IsReadOnlyDescripcion = true;
             this.IsEnabledAdd = true;
             this.IsEnableSave = false;
             this.IsEnableUpdate = true;
@@ -408,6 +408,7 @@ namespace ProyectoFinalBackend.ModelView
             if (parameter.Equals("Add"))
             {
                 add();
+                Mensajes.DescripcionFocus.Focus();
             }
             if (parameter.Equals("Save"))
             {

@@ -24,7 +24,7 @@ namespace ProyectoFinalBackend.View
         public ClienteView()
         {
             InitializeComponent();
-            this.DataContext = new ClienteViewModel();
+            this.DataContext = new ClienteViewModel(this); 
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using ProyectoFinalBackend.Entity;
+using ProyectoFinalBackend.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,10 +37,9 @@ namespace ProyectoFinalBackend.Model
 
         }
 
-        public async Task<bool> Add()
+        public async Task<bool> Add(ClienteView mensaje)
         {
-            var metroWindow = (Application.Current.MainWindow as MetroWindow);
-            var resultado = await metroWindow.ShowMessageAsync("Agregando", "Desea Agregar una nuevo cliente",
+            var resultado = await mensaje.ShowMessageAsync("Agregando", "Desea Agregar una nuevo cliente",
                 MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
                 {
                     AffirmativeButtonText = "Si",
@@ -60,12 +61,29 @@ namespace ProyectoFinalBackend.Model
         {
             Cliente nuevo = new Cliente();
             nuevo.Nit = nit;
-            nuevo.DPI = dpi;
+            nuevo.Dpi = dpi;
             nuevo.Nombre = nombre;
             nuevo.Direccion = direccion;
             db.Clientes.Add(nuevo);
             db.SaveChanges();
             return nuevo;
+        }
+
+        public void Delete(Cliente selectCliente)
+        {
+            db.Clientes.Remove(selectCliente);
+            db.SaveChanges();
+        }
+
+        public dynamic update(string nit, string dpi, string nombre, string direccion)
+        {
+            var updatCliente = this.db.Clientes.Find(nit);
+            updatCliente.Dpi = dpi;
+            updatCliente.Nombre = nombre;
+            updatCliente.Direccion = direccion;
+            this.db.Entry(updatCliente).State = EntityState.Modified;
+            this.db.SaveChanges();
+            return updatCliente;
         }
     }
 }

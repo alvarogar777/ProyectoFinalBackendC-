@@ -11,39 +11,56 @@ using System.Windows.Input;
 using System.Windows;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using ProyectoFinalBackend.View;
 
 namespace ProyectoFinalBackend.ModelView
 {
     public class ClienteViewModel : INotifyPropertyChanged, ICommand
     {
+        #region Campos
         private ClienteViewModel _Instancia;
         private ObservableCollection<Cliente> _Cliente;
-        private Boolean _IsReadOnlyNit = true;
-
-        ClienteModel clienteModel = new ClienteModel();
-
+        ClienteModel cliente = new ClienteModel();
+        private Cliente _SelectCliente;
+        private ClienteView _mensajes;
+        private ACCION accion = ACCION.NINGUNO;
+        private bool _IsReadOnlyDescripcion = true;
+        private bool _IsReadOnlyNit = true;
         private string _Nit;
         private string _Dpi;
         private string _Nombre;
-        private string _Direccion;
+        private string _Direccion;        
+        private bool _IsEnabledAdd = true;
+        private bool _IsEnabledDelete = true;
+        private bool _IsEnableUpdate = true;
+        private bool _IsEnableSave = false;
+        private bool _IsEnableCancel = false;
 
-        public ClienteViewModel()
+
+        #endregion
+
+        #region Constructores
+        public ClienteViewModel(ClienteView clienteView)
         {
             this.Instancia = this;
-            this.Nit = "";
+            borrarCampos();
+            Mensajes = clienteView;
         }
+        #endregion
 
+        #region Objeto Obbservador
         public ObservableCollection<Cliente> Clientes
         {
             get
             {
-                this._Cliente = clienteModel.ShowList;
+                this._Cliente = cliente.ShowList;
                 return this._Cliente;
             }
             set { this._Cliente = value; }
         }
+        #endregion
 
-
+        #region Geters and Seters
         public ClienteViewModel Instancia
         {
             get
@@ -53,6 +70,18 @@ namespace ProyectoFinalBackend.ModelView
             set
             {
                 this._Instancia = value;
+            }
+        }
+
+        public ClienteView Mensajes
+        {
+            get
+            {
+                return this._mensajes;
+            }
+            set
+            {
+                this._mensajes = value;
             }
         }
 
@@ -82,19 +111,6 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
-        public string Nombre
-        {
-            get
-            {
-                return _Nombre;
-            }
-            set
-            {
-                this._Nombre = value;
-                ChangeNotify("Nombre");
-            }
-        }
-
         public string Direccion
         {
             get
@@ -108,6 +124,33 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+        public string Nombre
+        {
+            get
+            {
+                return _Nombre;
+            }
+            set
+            {
+                this._Nombre = value;
+                ChangeNotify("Nombre");
+            }
+        }
+
+ 
+        public Boolean IsReadOnlyDescripcion
+        {
+            get
+            {
+                return this._IsReadOnlyDescripcion;
+            }
+            set
+            {
+                this._IsReadOnlyDescripcion = value;
+                ChangeNotify("IsReadOnlyDescripcion");
+            }
+        }
+
         public Boolean IsReadOnlyNit
         {
             get
@@ -116,12 +159,321 @@ namespace ProyectoFinalBackend.ModelView
             }
             set
             {
-                this._IsReadOnlyNit = value;
+                this._IsReadOnlyNit= value;
                 ChangeNotify("IsReadOnlyNit");
             }
         }
 
-        
+        public Boolean IsEnabledAdd
+        {
+            get
+            {
+                return this._IsEnabledAdd;
+            }
+            set
+            {
+                this._IsEnabledAdd = value;
+                ChangeNotify("IsEnabledAdd");
+            }
+        }
+        public Boolean IsEnabledDelete
+        {
+            get
+            {
+                return this._IsEnabledDelete;
+            }
+            set
+            {
+                this._IsEnabledDelete = value;
+                ChangeNotify("IsEnabledDelete");
+            }
+        }
+
+        public Boolean IsEnableUpdate
+        {
+            get
+            {
+                return this._IsEnableUpdate;
+            }
+            set
+            {
+                this._IsEnableUpdate = value;
+                ChangeNotify("IsEnableUpdate");
+            }
+        }
+
+        public Boolean IsEnableSave
+        {
+            get
+            {
+                return this._IsEnableSave;
+            }
+            set
+            {
+                this._IsEnableSave = value;
+                ChangeNotify("IsEnableSave");
+            }
+        }
+
+        public Boolean IsEnableCancel
+        {
+            get
+            {
+                return this._IsEnableCancel;
+            }
+            set
+            {
+                this._IsEnableCancel = value;
+                ChangeNotify("IsEnableCancel");
+            }
+        }
+
+        public Cliente SelectCliente
+        {
+            get { return this._SelectCliente; }
+            set
+            {
+                if (value != null)
+                {
+                    this._SelectCliente = value;
+                    this.Nit = value.Nit;
+                    this.Direccion = value.Direccion;
+                    this.Dpi = value.Dpi;
+                    this.Nombre = value.Nombre;
+                    ChangeNotify("SelectCliente");
+                }
+            }
+        }
+        #endregion
+
+        #region Metodos Enabled y validacion de campos
+        public void isEnabledAdd()
+        {
+            this.IsReadOnlyDescripcion = false;
+            this.IsReadOnlyNit = false;
+            this.IsEnableSave = true;
+            this.IsEnableUpdate = false;
+            this.IsEnabledDelete = false;
+            this.IsEnableCancel = true;
+            this.accion = ACCION.NUEVO;            
+        }
+
+        public void isEnableSave()
+        {
+            this.IsReadOnlyDescripcion = true;
+            this.IsReadOnlyNit = true;
+            this.IsEnableSave = false;
+            this.IsEnableUpdate = true;
+            this.IsEnabledDelete = true;
+            this.IsEnableCancel = false;
+        }
+
+        public void isEnableUpdate()
+        {
+            this.accion = ACCION.ACTUALIZAR;
+            this.IsReadOnlyDescripcion = false;
+            this.IsEnabledAdd = false;
+            this.IsEnabledDelete = false;
+            this.IsEnableUpdate = false;
+            this.IsEnableSave = true;
+            this.IsEnableCancel = true;
+        }
+
+        public void isEnableActualizar()
+        {
+            this.IsReadOnlyDescripcion = true;
+            this.IsEnabledAdd = true;
+            this.IsEnableSave = false;
+            this.IsEnableUpdate = true;
+            this.IsEnabledDelete = true;
+            this.IsEnableCancel = false;
+        }
+
+        public void isEnableErrorActualizar()
+        {
+            this.IsEnabledAdd = true;
+            this.IsEnabledDelete = true;
+            this.IsEnableUpdate = true;
+            this.IsEnableSave = false;
+            this.IsEnableCancel = false;
+            this.IsReadOnlyDescripcion = true;
+            this.IsReadOnlyNit = true;
+        }
+
+        public void isEnableCancel()
+        {
+            this.IsEnabledAdd = true;
+            this.IsEnabledDelete = true;
+            this.IsEnableUpdate = true;
+            this.IsEnableSave = false;
+            this.IsEnableCancel = false;
+            this.IsReadOnlyDescripcion = true;
+            this.IsReadOnlyNit = true;
+        }
+        public bool validacionCampos()
+        {
+            bool resultado = true;
+            if (this.Nit.Equals(""))
+            {
+                MessageBox.Show("Falta nit");
+                resultado = false;
+            }
+            else if (this.Dpi.Equals(""))
+            {
+                MessageBox.Show("Falta dpi");
+                resultado = false;
+            }
+            else if (this.Nombre.Equals(""))
+            {
+                MessageBox.Show("Falta Nombre");
+                resultado = false;
+            }
+            else if (this.Direccion.Equals(""))
+            {
+                MessageBox.Show("Falta dirección");
+                resultado = false;
+            }           
+            return resultado;
+        }
+
+        public void borrarCampos()
+        {
+            this.Nit = "";
+            this.Dpi = "";
+            this.Direccion = "";
+            this.Nombre = "";
+            this.Clientes.IndexOf(null);
+        }
+        #endregion
+
+        #region Metodos Add, Update, Delete, Save
+        public async void add()
+        {
+            bool result;
+            result = await cliente.Add(Mensajes);
+            if (result == true)
+            {
+                isEnabledAdd();
+            }
+        }
+
+        public async void save()
+        {
+            switch (this.accion)
+            {
+                case ACCION.NUEVO:
+                    if (!validacionCampos())
+                    {
+                        await Mensajes.ShowMessageAsync("Error", "Ingrese todos los campos");
+                    }
+                    else
+                    {
+                        try
+                        {
+                            this.Clientes.Add(cliente.Save(this.Nit, this.Dpi, this.Nombre, this.Direccion));
+                            await Mensajes.ShowMessageAsync("Exito", "Cliente ingresado exitosamente");
+                        }
+                        catch (Exception e)
+                        {
+                            await Mensajes.ShowMessageAsync("Error", "Nit ya ingresado");
+                        }
+                        borrarCampos();
+                        isEnableSave();
+                    }
+                    break;
+                case ACCION.ACTUALIZAR:
+                    try
+                    {
+                        if (this.SelectCliente != null)
+                        {
+                            int posicion = this.Clientes.IndexOf(this.SelectCliente);
+                            if (validacionCampos())
+                            {
+                                var updatCliente = cliente.update(this.SelectCliente.Nit, this.Dpi, this.Nombre, this.Direccion);
+                                this.Clientes.RemoveAt(posicion);
+                                this.Clientes.Insert(posicion, updatCliente);
+                                await Mensajes.ShowMessageAsync("Exito", "Registro actualizado correctamente");
+                                isEnableActualizar();
+                                borrarCampos();
+                            }
+                            else
+                            {
+                                await Mensajes.ShowMessageAsync("Actualizar", "Debe ingresar todos los campos");
+                            }
+                        }
+                        else
+                        {
+                            await Mensajes.ShowMessageAsync("Error", "Ingrese todos los campos");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        await Mensajes.ShowMessageAsync("Error", "Seleccione una fila para actualizar");
+                        isEnableErrorActualizar();
+                        borrarCampos();
+                    }
+                    break;
+            }
+        }
+
+        public void update()
+        {
+            if (this.SelectCliente != null)
+            {
+                isEnableUpdate();
+            }
+            else
+            {
+                Mensajes.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
+            }
+        }
+
+        public async void delete()
+        {
+            if (this.SelectCliente != null)
+            {
+                var respuesta = await Mensajes.ShowMessageAsync("Esta seguro de eliminar el registro", "Eliminar",
+                MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
+                {
+                    AffirmativeButtonText = "Si",
+                    NegativeButtonText = "No",
+                    AnimateShow = true,
+                    AnimateHide = false
+                });
+
+                if (respuesta == MessageDialogResult.Affirmative)
+                {
+                    try
+                    {
+                        cliente.Delete(this.SelectCliente);
+                        this.Clientes.Remove(this.SelectCliente);
+                        borrarCampos();
+                        this.IsReadOnlyDescripcion = true;
+                        this.accion = ACCION.NINGUNO;
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                    this.SelectCliente = null;
+                    await Mensajes.ShowMessageAsync("Exito", "Registro eliminado Correctamente");
+                }
+
+                else
+                {
+                    await Mensajes.ShowMessageAsync("Eliminar", "No se elimino ningun registro");
+
+                }
+            }
+            else
+            {
+                await Mensajes.ShowMessageAsync("Eliminar", "Debe seleccionar un registro");
+            }
+        }
+
+        #endregion
+
+        #region Eventos
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void ChangeNotify(string propertie)
@@ -139,57 +491,32 @@ namespace ProyectoFinalBackend.ModelView
             return true;
         }
 
-        public async void Execute(object parameter)
+        public void Execute(object parameter)
         {
-            bool result;
+            
             if (parameter.Equals("Add"))
             {
-                result = await clienteModel.Add();
-                if (result == true)
-                {
-                    this.IsReadOnlyNit = false;
-
-                }
+                add();
+                Mensajes.NitFocus.Focus();
             }
             if (parameter.Equals("Save"))
             {
-                var metroWindow = (Application.Current.MainWindow as MetroWindow);
-
-                if (this.Nit.Equals(""))
-                {
-                    await metroWindow.ShowMessageAsync("Error", "Ingrese Un Nit valido");
-                }
-                else if (this.Dpi.Equals(""))
-                {
-                    await metroWindow.ShowMessageAsync("Error", "Ingrese Un Dpi valido");
-                }
-                else if(this.Nombre.Equals(""))
-                {
-                    await metroWindow.ShowMessageAsync("Error", "Ingrese Un Nombre valido");
-                }
-                else if (this.Direccion.Equals(""))
-                {
-                    await metroWindow.ShowMessageAsync("Error", "Ingrese Una Dirección valida");
-                }
-                else
-                {                    
-                    try
-                    {
-                        this.Clientes.Add(clienteModel.Save(this.Nit, this.Dpi, this.Nombre, this.Direccion));
-                    }
-                    catch (Exception e)
-                    {
-                        await metroWindow.ShowMessageAsync("Error", "Nit ya existente");
-                    }
-                    
-                    this.Nit= "";
-                    this.Dpi = "";
-                    this.Nombre = "";
-                    this.Direccion = "";
-                    this.IsReadOnlyNit = true;
-                }
-
+                save();
+            }
+            else if (parameter.Equals("Update"))
+            {
+                update();
+            }
+            else if (parameter.Equals("Delete"))
+            {
+                delete();
+            }
+            else if (parameter.Equals("Cancel"))
+            {
+                isEnableCancel();
+                borrarCampos();
             }
         }
+        #endregion
     }
 }

@@ -279,7 +279,7 @@ namespace ProyectoFinalBackend.ModelView
 
         public void isEnableActualizar()
         {
-            this.IsReadOnlyDescripcion = false;
+            this.IsReadOnlyDescripcion = true;
             this.IsEnabledAdd = true;
             this.IsEnableSave = false;
             this.IsEnableUpdate = true;
@@ -311,27 +311,27 @@ namespace ProyectoFinalBackend.ModelView
             bool resultado = true;
             if (this.Nit.Equals(""))
             {
-                MessageBox.Show("falta nit");
+                MessageBox.Show("Falta nit");
                 resultado = false;
             }
             else if (this.Razon_Social.Equals(""))
             {
-                MessageBox.Show("falta razon");
+                MessageBox.Show("Falta razon social");
                 resultado = false;
             }
             else if (this.Direccion.Equals(""))
             {
-                MessageBox.Show("direccion");
+                MessageBox.Show("Falta Direccion");
                 resultado = false;
             }
             else if (this.Pagina_Web.Equals(""))
             {
-                MessageBox.Show("pagina");
+                MessageBox.Show("Falta pagina web");
                 resultado = false;
             }
             else if (this.ContactoPrincipal.Equals(""))
             {
-                MessageBox.Show("contacto");
+                MessageBox.Show("Falta contacto");
                 resultado = false;
             }
             return resultado;
@@ -491,6 +491,7 @@ namespace ProyectoFinalBackend.ModelView
             if (parameter.Equals("Add"))
             {
                 add();
+                Mensajes.DescripcionFocus.Focus();
             }
             if (parameter.Equals("Save"))
             {

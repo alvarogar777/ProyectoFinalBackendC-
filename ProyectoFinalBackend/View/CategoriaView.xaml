@@ -25,8 +25,8 @@
             <ColumnDefinition Width="256*"/>
             <ColumnDefinition Width="123*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Descripción" Grid.Row="0" Grid.Column="1" Margin="0.2,49,120.4,108.4" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.6,53,9.6,104.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción" Grid.Column="2"  />
+        <Label  Content="Descripción" Grid.Row="0" Grid.Column="1" Margin="0.2,49,120.4,108.4" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <TextBox Name="DescripcionFocus" Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.6,53,9.6,104.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción" Grid.Column="2"  />
 
 
         <!--<DataGrid SelectedItem="{Binding SelectTipoEmpaque}" ItemsSource="{Binding TipoEmpaques}" Grid.ColumnSpan="3" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" Grid.Column="1" ForceCursor="True"  />-->
