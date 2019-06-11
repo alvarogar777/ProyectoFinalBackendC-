@@ -9,15 +9,13 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Productos" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+        Title="Productos" Height="700" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-
-
+            <RowDefinition Height="253*"/>
+            <RowDefinition Height="214*"/>
+            <RowDefinition Height="233*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="129*"></ColumnDefinition>
@@ -26,27 +24,60 @@
             <ColumnDefinition Width="256*"/>
             <ColumnDefinition Width="123*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Descripción" Grid.Row="0" Grid.Column="1" Margin="0.2,49,120.4,108.4" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.6,53,9.6,104.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripción" Grid.Column="2"  />
+        <Label Content="Codigo Categoria" Grid.Row="0" Grid.Column="1" Margin="121,33,76,178.8" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" Grid.ColumnSpan="2"/>
+        <Label Content="Codigo Empaque" Grid.Row="0" Grid.Column="1" Margin="121,74,76,136.8" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" Grid.ColumnSpan="2"/>
+        <Label Content="Descripción" Grid.Row="0" Grid.Column="1" Margin="121,116,76,97.8" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" Grid.ColumnSpan="2"/>
+        <Label Content="Precio Unitario" Grid.Row="0" Grid.Column="1" Margin="121,155,76,0" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" Height="43" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="Precio por docena" Grid.Column="1" Margin="121,198,76,9.8" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+        <Label Content="Preocio por mayor" Grid.Column="1" Margin="121,0.2,76,174.2" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Label Content="Existencia" Grid.Column="1" Margin="121,40.2,76,134.2" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Label Content="Imagen" Grid.Column="1" Margin="121,80.2,160.2,94.2" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.5,0.5" Grid.Row="1"/>
+        <Label Content="Imagen" Grid.Column="1" Margin="121,80.2,160.2,94.2" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.5,0.5" Grid.Row="1"/>
 
+        <TextBox Name="DescripcionFocus" Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding CodigoCategoria}" Margin="0.8,31,98,178.8" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese codigo categoria" Grid.Column="2"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding CodigoEmpaque}" Margin="0.8,74,98,136.8" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese codigo Empaque" Grid.Column="2"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Descripcion}" Margin="0.8,116,9,97.8" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripcion" Grid.Column="2"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding PrecioUnitario}" Margin="0.8,155,10,54.8" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese precio unitario" Grid.Column="2"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding PrecioPorDocena}" Margin="0.8,198,9,9.8" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese precio por docena" Grid.Column="2"  />
+        <TextBox Grid.Row="1" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding PrecioPorMayor}" Margin="0.8,0.2,9,169.2" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un precio por mayor" Grid.Column="2"  />
+        <TextBox Grid.Row="1" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Existencia}" Margin="0.8,40.2,9,129.2" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Existencia" Grid.Column="2"  />
+        <TextBox Grid.Row="1" IsReadOnly="True" Text="{Binding Imagen}"   Margin="200,83.2,116.4,94.2" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="10" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una url" Grid.Column="1"  />
+        <TextBox Grid.Row="1" IsReadOnly="True" Text="{Binding NombreImagen}"   Margin="170,84.2,98,93.2" FontFamily="Arial" FontSize="10" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Nombre" Grid.Column="3" Grid.ColumnSpan="2"  />
+        <!--<DataGrid SelectedItem="{Binding SelectTipoEmpaque}" ItemsSource="{Binding TipoEmpaques}" Grid.ColumnSpan="3" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" Grid.Column="1" ForceCursor="True"  />-->
 
-        <DataGrid ItemsSource="{Binding Productos}" Grid.ColumnSpan="5" Margin="31,61.6,23.6,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" ForceCursor="True"  />
+        <DataGrid Name="producto"
+              SelectedItem="{Binding Path=SelectProducto}"
+              ItemsSource="{Binding Path=Productos}"
+              Grid.Row="1"
+              FontFamily="Arial"
+           
+              AutoGenerateColumns="False" Margin="22,127.2,4.4,141" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn 
+                                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    Header="Seleccionar"
+                                    Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                    />
+                <DataGridTextColumn Header="CODIGO" Binding="{Binding CodigoProducto}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="CODIGOCATEGORIA" Binding="{Binding CodigoCategoria}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="CODIGOEMPAQUE" Binding="{Binding CodigoEmpaque}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="DESCRIPCION" Binding="{Binding Descripcion}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="PRECIOUNITARIO" Binding="{Binding PrecioUnitario}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
-
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="166.2,54.2,160.4,0.4" Cursor="Hand" Grid.Column="1" ForceCursor="True">
-            <Button Content="Agregar" Command="{Binding Instancia}" CommandParameter="Add"  Background="#FF192648" BorderBrush="Black" BorderThickness="1"/>
-            <Button Content="Actualizar" BorderBrush="Black" Background="#FF334619"/>
-            <Button Content="Guardar" Command="{Binding Instancia}" CommandParameter="Save" BorderBrush="Black" Background="#FF949F12"/>
-            <Button Content="Eliminar" Background="#FF730F0F" BorderBrush="Black" />
-            <Button Content="Menú" BorderBrush="Black" Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="218,91.8,109.4,0" Cursor="Hand" Grid.Column="1" ForceCursor="True">
+            <Button Content="Agregar"       IsEnabled="{Binding IsEnabledAdd }"     Command="{Binding Instancia}"   CommandParameter="Add"    Background="#FF192648" BorderBrush="Black" BorderThickness="1"/>
+            <Button Content="Actualizar"    IsEnabled="{Binding IsEnableUpdate }"   Command="{Binding Instancia}"   CommandParameter="Update" BorderBrush="Black"    Background="#FF334619"/>
+            <Button Content="Eliminar"      IsEnabled="{Binding IsEnabledDelete }"  Command="{Binding Instancia}"   CommandParameter="Delete" Background="#FF730F0F" BorderBrush="Black" />
+            <Button Content="Guardar"       IsEnabled="{Binding IsEnableSave}"     Command="{Binding Instancia}"   CommandParameter="Save"   BorderBrush="Black"    Background="#FF949F12" Margin="0,0,0,0.2"/>
+            <Button Content="Cancelar"          IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
         </StackPanel>
-        <Label x:Name="label" Grid.ColumnSpan="3" Content="Productos" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="228.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
-        <ComboBox x:Name="comboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="317.2,91,0,0" VerticalAlignment="Top" Width="437" Grid.ColumnSpan="4">
-            <ComboBoxItem Tag="CO">Colorado</ComboBoxItem>
-            <ComboBoxItem Tag="CA">California</ComboBoxItem>
-            <ComboBoxItem Tag="CO">Colorado</ComboBoxItem>
-        </ComboBox>
-       
-
+        <Label x:Name="label" Grid.ColumnSpan="3" Content="Productos" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="256,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
+        <Image x:Name="Imagen" Source="{Binding UrlImagen}"  HorizontalAlignment="Left" Height="189" Margin="42,64,0,0" VerticalAlignment="Top" Width="218" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarImagen"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="44.6,85.2,10,94.2" Grid.Row="1" Grid.Column="4"/>
+        <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoCategoria"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="44.6,33,10,184.8" Grid.Column="4"/>
+        <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoEmpaque"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="45.6,76,9,141.8" Grid.Column="4"/>
     </Grid>
 </Controls:MetroWindow>

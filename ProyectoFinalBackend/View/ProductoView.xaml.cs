@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using ProyectoFinalBackend.ModelView;
+using System.IO;
+using System.Windows.Forms;
 
 namespace ProyectoFinalBackend.View
 {
@@ -24,7 +26,7 @@ namespace ProyectoFinalBackend.View
         public ProductoView()
         {
             InitializeComponent();
-            this.DataContext = new ProductoViewModel();
+            this.DataContext = new ProductoViewModel(this);            
         }
     }
 }
