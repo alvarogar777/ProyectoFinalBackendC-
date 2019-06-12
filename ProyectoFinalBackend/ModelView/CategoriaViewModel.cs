@@ -24,9 +24,11 @@ namespace ProyectoFinalBackend.ModelView
         CategoriaModel categoria = new CategoriaModel();
         private Categoria _SelectCategoria;
         private CategoriaView _mensajes;
+        private ProductoView _AgregandoCodigo;
         private ACCION accion = ACCION.NINGUNO;
         private bool _IsReadOnlyDescripcion = true;
         private string _Descripcion;
+        private string _IsvisibleAdd;
         private bool _IsEnabledAdd = true;
         private bool _IsEnabledDelete = true;
         private bool _IsEnableUpdate = true;
@@ -42,6 +44,16 @@ namespace ProyectoFinalBackend.ModelView
             this.Instancia = this;
             borrarCampos();
             Mensajes = categoriaView;
+            IsvisibleAdd = "Hidden";
+        }
+
+        public CategoriaViewModel(CategoriaView categoriaView,ProductoView productoView)
+        {
+            this.Instancia = this;
+            borrarCampos();
+            Mensajes = categoriaView;
+            this.AgregandoCodigo = productoView;
+            IsvisibleAdd = "Visible";
         }
         #endregion
 
@@ -82,6 +94,18 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+        public ProductoView AgregandoCodigo
+        {
+            get
+            {
+                return _AgregandoCodigo;
+            }
+            set
+            {
+                this._AgregandoCodigo=value;
+            }
+        }
+
         public string Descripcion
         {
             get
@@ -92,6 +116,19 @@ namespace ProyectoFinalBackend.ModelView
             {
                 this._Descripcion = value;
                 ChangeNotify("Descripcion");
+            }
+        }
+
+        public string IsvisibleAdd
+        {
+            get
+            {
+                return _IsvisibleAdd;
+            }
+            set
+            {
+                this._IsvisibleAdd = value;
+                ChangeNotify("IsvisibleAdd");
             }
         }
 
@@ -383,6 +420,20 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+        public void AgregarCodigoCategoria()
+        {
+            if (this.SelectCategoria != null)
+            {
+                AgregandoCodigo.CodigoCategoria.Text=this.SelectCategoria.CodigoCategoria.ToString();          
+
+                Mensajes.ShowMessageAsync("Agregar", "Codigo Agregado exitosamente en la ventana productos");
+            }
+            else
+            {
+                Mensajes.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
+            }
+        }
+
         #endregion
 
         #region Eventos
@@ -426,6 +477,11 @@ namespace ProyectoFinalBackend.ModelView
             {
                 isEnableCancel();
                 borrarCampos();
+            }
+            else if (parameter.Equals("AgregarCategoria"))
+            {
+                AgregarCodigoCategoria();
+
             }
         }
         #endregion

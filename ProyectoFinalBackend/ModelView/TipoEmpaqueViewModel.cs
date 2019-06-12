@@ -33,9 +33,11 @@ namespace ProyectoFinalBackend.ModelView
         TipoEmpaqueModel tipoEmpaque = new TipoEmpaqueModel();
         private TipoEmpaque _SelectTipoEmpaque;
         private TipoEmpaqueView _mensajes;
+        private ProductoView _AgregandoCodigo;
         private ACCION accion = ACCION.NINGUNO;
         private bool _IsReadOnlyDescripcion = true;        
         private string _Descripcion;
+        private string _IsvisibleAdd;
         private bool _IsEnabledAdd = true;
         private bool _IsEnabledDelete = true;
         private bool _IsEnableUpdate = true;
@@ -51,6 +53,16 @@ namespace ProyectoFinalBackend.ModelView
             this.Instancia = this;
             borrarCampos();
             Mensajes = tipoEmpaqueView;
+            IsvisibleAdd = "Hidden";
+        }
+
+        public TipoEmpaqueViewModel(TipoEmpaqueView tipoEmpaqueView, ProductoView productoView)
+        {
+            this.Instancia = this;
+            borrarCampos();
+            Mensajes = tipoEmpaqueView;
+            this.AgregandoCodigo = productoView;
+            IsvisibleAdd = "Visible";
         }
         #endregion
 
@@ -88,6 +100,18 @@ namespace ProyectoFinalBackend.ModelView
             set
             {
                 this._mensajes = value;
+            }
+        }
+
+        public ProductoView AgregandoCodigo
+        {
+            get
+            {
+                return _AgregandoCodigo;
+            }
+            set
+            {
+                this._AgregandoCodigo = value;
             }
         }
 
@@ -197,6 +221,19 @@ namespace ProyectoFinalBackend.ModelView
         #endregion
 
         #region Metodos Enabled y validacion de campos
+
+        public string IsvisibleAdd
+        {
+            get
+            {
+                return _IsvisibleAdd;
+            }
+            set
+            {
+                this._IsvisibleAdd = value;
+                ChangeNotify("IsvisibleAdd");
+            }
+        }
         public void isEnabledAdd()
         {
             this.IsReadOnlyDescripcion = false;
@@ -391,6 +428,20 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+        public void AgregarCodigoCategoria()
+        {
+            if (this.SelectTipoEmpaque != null)
+            {
+                AgregandoCodigo.CodigoEmpaque.Text = this.SelectTipoEmpaque.CodigoEmpaque.ToString();
+
+                Mensajes.ShowMessageAsync("Agregar", "Codigo Agregado exitosamente en la ventana productos");
+            }
+            else
+            {
+                Mensajes.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
+            }
+        }
+
         #endregion
 
         #region Eventos
@@ -434,6 +485,11 @@ namespace ProyectoFinalBackend.ModelView
             {
                 isEnableCancel();                
                 borrarCampos();
+            }
+            else if (parameter.Equals("AgregarCategoria"))
+            {
+                AgregarCodigoCategoria();
+
             }
         }
         #endregion

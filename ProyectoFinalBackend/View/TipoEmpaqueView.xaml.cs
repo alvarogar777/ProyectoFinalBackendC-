@@ -30,5 +30,11 @@ namespace ProyectoFinalBackend.View
 
         }
 
+        public TipoEmpaqueView(ProductoView instancia)
+        {
+            InitializeComponent();
+            this.DataContext = new TipoEmpaqueViewModel(this, instancia);
+        }
+
     }
 }

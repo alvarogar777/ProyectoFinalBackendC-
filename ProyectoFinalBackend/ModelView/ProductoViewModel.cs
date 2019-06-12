@@ -50,8 +50,9 @@ namespace ProyectoFinalBackend.ModelView
         public ProductoViewModel(ProductoView productoView)
         {
             this.Instancia = this;
-            borrarCampos();
+            
             Mensajes = productoView;
+            borrarCampos();
         }
         #endregion
 
@@ -383,19 +384,11 @@ namespace ProyectoFinalBackend.ModelView
             this.IsEnableCancel = false;
             this.IsReadOnlyDescripcion = true;
         }
-        public bool validacionCampos()
-        {
-            bool resultado = true;
-            if (this.Descripcion.Equals(""))
-            {
-                resultado = false;
-            }
-            return resultado;
-        }
+
 
         public void borrarCampos()
         {
-            this.CodigoCategoria = "";
+            Mensajes.CodigoCategoria.Text = "";
             this.CodigoEmpaque = "";
             this.Descripcion = "";
             this.PrecioUnitario = "";
@@ -406,6 +399,47 @@ namespace ProyectoFinalBackend.ModelView
             this.NombreImagen = "";
             this.UrlImagen = "";
             this.Productos.IndexOf(null);
+        }
+
+        public bool validacionCampos()
+        {
+            bool resultado = true;
+            if (Mensajes.CodigoCategoria.Text.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta CodigoCategoria");
+                resultado = false;
+            }
+            else if (Mensajes.CodigoEmpaque.Text.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta CodigoEmpaque");
+                resultado = false;
+            }
+            else if (this.Descripcion.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta Descripcion");
+                resultado = false;
+            }
+            else if (this.PrecioUnitario.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta PrecioUnitario");
+                resultado = false;
+            }
+            else if (this.PrecioPorDocena.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta PrecioPorDocena");
+                resultado = false;
+            }
+            else if (this.PrecioPorMayor.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta PrecioPorMayor");
+                resultado = false;
+            }
+            else if (this.Existencia.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta Existencia");
+                resultado = false;
+            }
+            return resultado;
         }
         #endregion
 
@@ -425,7 +459,7 @@ namespace ProyectoFinalBackend.ModelView
             switch (this.accion)
             {
                 case ACCION.NUEVO:
-                    if (this.Descripcion.Equals(""))
+                    if (!validacionCampos())
                     {
                         await Mensajes.ShowMessageAsync("Error", "Ingrese Un tipo de Producto");
                     }
@@ -434,7 +468,7 @@ namespace ProyectoFinalBackend.ModelView
 
                         try
                         {
-                            this.Productos.Add(producto.Save(Convert.ToInt16(this.CodigoCategoria), Convert.ToInt16(this.CodigoEmpaque), this.Descripcion, Convert.ToDecimal(this.PrecioUnitario),
+                            this.Productos.Add(producto.Save(Convert.ToInt16(Mensajes.CodigoCategoria.Text), Convert.ToInt16(Mensajes.CodigoEmpaque.Text), this.Descripcion, Convert.ToDecimal(this.PrecioUnitario),
                                 Convert.ToDecimal(this.PrecioPorDocena), Convert.ToDecimal(this.PrecioPorMayor), Convert.ToInt16(this.Existencia), this.Imagen, this.NombreImagen));
                             await Mensajes.ShowMessageAsync("Exito", "Producto ingresada exitosamente");
                             moverImagen(this.Imagen, this.NombreImagen);
@@ -452,10 +486,13 @@ namespace ProyectoFinalBackend.ModelView
                     {
                         if (this.SelectProducto != null)
                         {
+                          
+                            //Mensajes.CodigoCategoria.Focus();
                             int posicion = this.Productos.IndexOf(this.SelectProducto);
                             if (validacionCampos())
                             {
-                                var updatProducto = producto.update(this.SelectProducto.CodigoProducto, Convert.ToInt16(this.CodigoCategoria), Convert.ToInt16(this.CodigoEmpaque), this.Descripcion, Convert.ToDecimal(this.PrecioUnitario),
+                                //await Mensajes.ShowMessageAsync("Error", Mensajes.CodigoCategoria.Text);
+                                var updatProducto = producto.update(this.SelectProducto.CodigoProducto, Convert.ToInt16(Mensajes.CodigoCategoria.Text), Convert.ToInt16(Mensajes.CodigoEmpaque.Text), this.Descripcion, Convert.ToDecimal(this.PrecioUnitario),
                             Convert.ToDecimal(this.PrecioPorDocena), Convert.ToDecimal(this.PrecioPorMayor), Convert.ToInt16(this.Existencia), this.Imagen,this.NombreImagen);
                                 this.Productos.RemoveAt(posicion);
                                 this.Productos.Insert(posicion, updatProducto);
@@ -619,6 +656,14 @@ namespace ProyectoFinalBackend.ModelView
             {
                 isEnableCancel();
                 borrarCampos();
+            }
+            else if (parameter.Equals("AgregarCodigoCategoria"))
+            {
+                new CategoriaView(Mensajes).ShowDialog();
+            }
+            else if (parameter.Equals("AgregarCodigoEmpaque"))
+            {
+                new TipoEmpaqueView(Mensajes).ShowDialog();
             }
         }
         #endregion

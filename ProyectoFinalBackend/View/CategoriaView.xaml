@@ -58,6 +58,6 @@
             <Button Content="Cancelar"          IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
         </StackPanel>
         <Label x:Name="label" Grid.ColumnSpan="3" Content="Categorías" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
-        <Button Content="Agregar" IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="183.4,166,229.8,175" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="2"/>
+        <Button Content="Agregar categoria a productos" Visibility="{Binding IsvisibleAdd}" IsEnabled="True"   Command="{Binding Instancia}"   CommandParameter="AgregarCategoria" BorderBrush="Black"    Background="Red" Margin="183.4,0,229.8,141" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Controls:MetroWindow>
