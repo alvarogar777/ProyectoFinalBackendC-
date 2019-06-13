@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using ProyectoFinalBackend.ModelView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +19,12 @@ namespace ProyectoFinalBackend.View
     /// <summary>
     /// Lógica de interacción para InventarioView.xaml
     /// </summary>
-    public partial class InventarioView : Window
+    public partial class InventarioView : MetroWindow
     {
         public InventarioView()
         {
             InitializeComponent();
+            this.DataContext = new InventarioViewModel(this);
         }
     }
 }

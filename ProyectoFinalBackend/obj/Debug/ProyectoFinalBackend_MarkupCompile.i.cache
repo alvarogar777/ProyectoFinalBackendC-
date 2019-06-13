@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\
 ProyectoFinalBackend
 none
 false
 DEBUG;TRACE
-C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\App.xaml
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\App.xaml
 20-1257299292
 
-67-2048402350
-24-2071506959
+6555138167
+24396654271
 MainWindow.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;View\TipoEmpaqueView.xaml;View\CategoriaView.xaml;View\ClienteView.xaml;View\CompraView.xaml;View\DetalleCompraView.xaml;View\DetalleFacturaView.xaml;View\EmailClienteView.xaml;View\EmailProveedorView.xaml;View\FacturaView.xaml;View\InventarioView.xaml;View\ProductoView.xaml;View\ProveedorView.xaml;View\RoleView.xaml;View\TelefonoClienteView.xaml;View\TelefonoProveedorView.xaml;View\UserRoleView.xaml;View\UserView.xaml;
 
 True

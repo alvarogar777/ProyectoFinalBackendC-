@@ -28,5 +28,10 @@ namespace ProyectoFinalBackend.View
             InitializeComponent();
             this.DataContext = new ProductoViewModel(this);            
         }
+        public ProductoView(InventarioView instancia)
+        {
+            InitializeComponent();
+            this.DataContext = new ProductoViewModel(this, instancia);
+        }
     }
 }

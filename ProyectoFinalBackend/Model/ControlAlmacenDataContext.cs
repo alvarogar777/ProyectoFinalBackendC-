@@ -19,7 +19,7 @@ namespace ProyectoFinalBackend.Model
         public DbSet<Emailcliente> Emailclientes { get; set; }
         public DbSet<EmailProveedor> EmailProveedores { get; set; }
         public DbSet<Factura> Facturas { get; set; }
-        public DbSet<Inventario> Inventario { get; set; }
+        public DbSet<Inventario> Inventarios { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<Role> Roles { get; set; }

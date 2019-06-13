@@ -25,6 +25,7 @@ namespace ProyectoFinalBackend.ModelView
         ProductoModel producto = new ProductoModel();
         private Producto _SelectProducto;
         private ProductoView _mensajes;
+        private InventarioView _AgregandoCodigo;
         private ACCION accion = ACCION.NINGUNO;
         private bool _IsReadOnlyDescripcion = true;
         private string _CodigoCategoria;
@@ -37,6 +38,7 @@ namespace ProyectoFinalBackend.ModelView
         private string _Imagen;
         private string _NombreImagen;
         private string _UrlImagen;
+        private string _IsvisibleAdd;
         private bool _IsEnabledAdd = true;
         private bool _IsEnabledDelete = true;
         private bool _IsEnableUpdate = true;
@@ -50,9 +52,18 @@ namespace ProyectoFinalBackend.ModelView
         public ProductoViewModel(ProductoView productoView)
         {
             this.Instancia = this;
-            
-            Mensajes = productoView;
             borrarCampos();
+            Mensajes = productoView;            
+            IsvisibleAdd = "Hidden";
+        }
+
+        public ProductoViewModel(ProductoView productoView, InventarioView inventarioView)
+        {
+            this.Instancia = this;
+            borrarCampos();
+            Mensajes = productoView;
+            this.AgregandoCodigo = inventarioView;
+            IsvisibleAdd = "Visible";
         }
         #endregion
 
@@ -92,8 +103,30 @@ namespace ProyectoFinalBackend.ModelView
                 this._mensajes = value;
             }
         }
+        public InventarioView AgregandoCodigo
+        {
+            get
+            {
+                return _AgregandoCodigo;
+            }
+            set
+            {
+                this._AgregandoCodigo = value;
+            }
+        }
 
- 
+        public string IsvisibleAdd
+        {
+            get
+            {
+                return _IsvisibleAdd;
+            }
+            set
+            {
+                this._IsvisibleAdd = value;
+                ChangeNotify("IsvisibleAdd");
+            }
+        }
 
         public Boolean IsReadOnlyDescripcion
         {
@@ -388,7 +421,7 @@ namespace ProyectoFinalBackend.ModelView
 
         public void borrarCampos()
         {
-            Mensajes.CodigoCategoria.Text = "";
+            this.CodigoCategoria = "";
             this.CodigoEmpaque = "";
             this.Descripcion = "";
             this.PrecioUnitario = "";
@@ -606,8 +639,20 @@ namespace ProyectoFinalBackend.ModelView
                 System.Console.WriteLine(e);
             }
         }
-  
 
+        public void AgregarCodigoCategoria()
+        {
+            if (this.SelectProducto != null)
+            {
+                AgregandoCodigo.CodigoProdcuto.Text = this.SelectProducto.CodigoProducto.ToString();
+
+                Mensajes.ShowMessageAsync("Agregar", "Codigo Agregado exitosamente en la ventana productos");
+            }
+            else
+            {
+                Mensajes.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
+            }
+        }
         #endregion
 
         #region Eventos
@@ -664,6 +709,11 @@ namespace ProyectoFinalBackend.ModelView
             else if (parameter.Equals("AgregarCodigoEmpaque"))
             {
                 new TipoEmpaqueView(Mensajes).ShowDialog();
+            }
+            else if (parameter.Equals("AgregarProducto"))
+            {
+                AgregarCodigoCategoria();
+
             }
         }
         #endregion

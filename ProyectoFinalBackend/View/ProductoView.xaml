@@ -79,5 +79,6 @@
         <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarImagen"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="44.6,85.2,10,94.2" Grid.Row="1" Grid.Column="4"/>
         <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoCategoria"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="44.6,33,10,184.8" Grid.Column="4"/>
         <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoEmpaque"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="45.6,76,9,141.8" Grid.Column="4"/>
+        <Button Content="Agregar Producto a Inventario" Visibility="{Binding IsvisibleAdd}" IsEnabled="True"   Command="{Binding Instancia}"   CommandParameter="AgregarProducto" BorderBrush="Black"    Background="Red" Margin="26,0.2,239.2,155.2" Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
 </Controls:MetroWindow>
