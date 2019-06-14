@@ -47,7 +47,7 @@
             <Image Source="Imagenes/producto.png" Width="145" Height="119"/>
         </Controls:Tile>
 
-        <Controls:Tile CommandParameter="DetalleCompra" Command="{Binding Instancia}"  IsEnabled="True" Title="Detalle Compra" TitleFontSize="23" TiltFactor="7" FontFamily="Arial Black" FontSize="14" Margin="839,89,221,371" FontWeight="Bold" BorderThickness="4,2,0,4" Opacity="0.80">
+        <Controls:Tile CommandParameter="GenerarVenta" Command="{Binding Instancia}"  IsEnabled="True" Title="Generar venta" TitleFontSize="23" TiltFactor="7" FontFamily="Arial Black" FontSize="14" Margin="839,89,221,371" FontWeight="Bold" BorderThickness="4,2,0,4" Opacity="0.80">
             <Controls:Tile.Effect>
                 <DropShadowEffect ShadowDepth="9" BlurRadius="10"/>
             </Controls:Tile.Effect>

@@ -90,6 +90,7 @@
     <Compile Include="Entity\Emailcliente.cs" />
     <Compile Include="Entity\EmailProveedor.cs" />
     <Compile Include="Entity\Factura.cs" />
+    <Compile Include="Entity\GenerarVenta.cs" />
     <Compile Include="Entity\Inventario.cs" />
     <Compile Include="Entity\Producto.cs" />
     <Compile Include="Entity\TelefonoCliente.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="ModelView\EmailClienteViewModel.cs" />
     <Compile Include="ModelView\EmailProveedorViewModel.cs" />
     <Compile Include="ModelView\FacturaViewModel.cs" />
+    <Compile Include="ModelView\GenerarVentaViewModel.cs" />
     <Compile Include="ModelView\InventarioViewModel.cs" />
     <Compile Include="ModelView\MainViewModel.cs" />
     <Compile Include="ModelView\ProductoViewModel.cs" />
@@ -118,6 +120,9 @@
     <Compile Include="Model\ProductoModel.cs" />
     <Compile Include="Model\ProveedorModel.cs" />
     <Compile Include="Model\TipoEmpaqueModel.cs" />
+    <Compile Include="View\GenerarVentaView.xaml.cs">
+      <DependentUpon>GenerarVentaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TipoEmpaqueView.xaml.cs">
       <DependentUpon>TipoEmpaqueView.xaml</DependentUpon>
     </Compile>
@@ -188,6 +193,10 @@
     <Page Include="Resources\IconsNonShared.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\GenerarVentaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TipoEmpaqueView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -117,3 +117,5 @@ C:\Users\usuario\documents\visual studio 2015\Projects\ProyectoFinalBackend\Proy
 C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\ProyectoFinalBackend.csprojAssemblyReference.cache
 C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\ProyectoFinalBackend.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\ProyectoFinalBackend.csproj.CopyComplete
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\View\GenerarVentaView.g.cs
+C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\ProyectoFinalBackend\obj\Debug\View\GenerarVentaView.baml

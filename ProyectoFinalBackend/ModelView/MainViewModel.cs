@@ -58,9 +58,9 @@ namespace ProyectoFinalBackend.ModelView
             {
                 new ProductoView().ShowDialog();
             }
-            else if (parameter.Equals("DetalleCompra"))
+            else if (parameter.Equals("GenerarVenta"))
             {
-                new DetalleCompraView().ShowDialog();
+                new GenerarVentaView().ShowDialog();
             }
             else if (parameter.Equals("EmailProveedor"))
             {
