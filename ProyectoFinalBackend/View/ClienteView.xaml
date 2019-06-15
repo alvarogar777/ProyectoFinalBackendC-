@@ -67,6 +67,6 @@
             <Button Content="Guardar"       IsEnabled="{Binding IsEnableSave}"     Command="{Binding Instancia}"   CommandParameter="Save"   BorderBrush="Black"    Background="#FF949F12" Margin="0,0,0,0.2"/>
             <Button Content="Cancelar"          IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
         </StackPanel>
-
+        <Button Content="Agregar Cliente a factura" Visibility="{Binding IsvisibleAdd}" IsEnabled="True"   Command="{Binding Instancia}"   CommandParameter="AgregarCliente" BorderBrush="Black"    Background="Red" Margin="233.4,12,229.8,143" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Controls:MetroWindow>

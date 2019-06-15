@@ -23,13 +23,15 @@ namespace ProyectoFinalBackend.ModelView
         ClienteModel cliente = new ClienteModel();
         private Cliente _SelectCliente;
         private ClienteView _mensajes;
+        private GenerarVentaView _AgregandoCodigo;
         private ACCION accion = ACCION.NINGUNO;
         private bool _IsReadOnlyDescripcion = true;
         private bool _IsReadOnlyNit = true;
         private string _Nit;
         private string _Dpi;
         private string _Nombre;
-        private string _Direccion;        
+        private string _Direccion;
+        private string _IsvisibleAdd;
         private bool _IsEnabledAdd = true;
         private bool _IsEnabledDelete = true;
         private bool _IsEnableUpdate = true;
@@ -45,6 +47,16 @@ namespace ProyectoFinalBackend.ModelView
             this.Instancia = this;
             borrarCampos();
             Mensajes = clienteView;
+            IsvisibleAdd = "Hidden";
+        }
+
+        public ClienteViewModel(ClienteView clienteView, GenerarVentaView generarVentaView)
+        {
+            this.Instancia = this;
+            borrarCampos();
+            Mensajes = clienteView;
+            this.AgregandoCodigo = generarVentaView;
+            IsvisibleAdd = "Visible";
         }
         #endregion
 
@@ -137,7 +149,20 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
- 
+        public string IsvisibleAdd
+        {
+            get
+            {
+                return _IsvisibleAdd;
+            }
+            set
+            {
+                this._IsvisibleAdd = value;
+                ChangeNotify("IsvisibleAdd");
+            }
+        }
+
+
         public Boolean IsReadOnlyDescripcion
         {
             get
@@ -471,6 +496,32 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+        public void AgregarCodigoCategoria()
+        {
+            if (this.SelectCliente != null)
+            {
+                AgregandoCodigo.Nit.Text = this.SelectCliente.Nit;
+
+                Mensajes.ShowMessageAsync("Agregar", "Nit Agregado exitosamente en la ventana Factura");
+            }
+            else
+            {
+                Mensajes.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
+            }
+        }
+
+        public GenerarVentaView AgregandoCodigo
+        {
+            get
+            {
+                return _AgregandoCodigo;
+            }
+            set
+            {
+                this._AgregandoCodigo = value;
+            }
+        }
+
         #endregion
 
         #region Eventos
@@ -515,6 +566,10 @@ namespace ProyectoFinalBackend.ModelView
             {
                 isEnableCancel();
                 borrarCampos();
+            }
+            else if (parameter.Equals("AgregarCliente"))
+            {
+                AgregarCodigoCategoria();
             }
         }
         #endregion

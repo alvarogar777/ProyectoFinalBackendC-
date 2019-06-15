@@ -59,7 +59,7 @@
                 <DataGridTextColumn Header="CODIGO" Binding="{Binding CodigoProducto}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="DESCRIPCION" Binding="{Binding Descripcion}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="PrecioUnidad" Binding="{Binding PrecioUnidad}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="PrecioUnidad" Binding="{Binding PrecioUnitario}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="TOTAL" Binding="{Binding Total }" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
@@ -75,5 +75,14 @@
         <Label Content="Cantidad" Grid.Row="0" Margin="248,85,240,645" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.629,1.177"/>
         <TextBox  Grid.Row="0" IsReadOnly="False" Text="{Binding CantidadProducto}" Margin="397,81,0,645" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese cantidad"  />
         <Button Content="Agregar productos"       Command="{Binding Instancia}"   CommandParameter="Add"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="255,170,0,554"/>
+        <Label Content="Precio unitario" Grid.Row="0" Margin="310,269,202,460" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="12" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.629,1.177"/>
+        <Label Content="Precio Docena" Grid.Row="0" Margin="310,335,202,392" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="12" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.629,1.177"/>
+        <Label Content="Precio Mayor" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="12" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.629,1.177" Margin="310,403,202,324"/>
+        <Label Content="Existencias" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="12" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.629,1.177" Margin="310,466,207,260"/>
+        <TextBox  Grid.Row="0" IsReadOnly="True" Text="{Binding PrecioUnitario}" Margin="430,274,10,455" FontFamily="Arial" FontSize="12" Controls:TextBoxHelper.ClearTextButton="True"  />
+        <TextBox  Grid.Row="0" IsReadOnly="True" Text="{Binding PrecioPorDocena}" Margin="430,336,10,392" FontFamily="Arial" FontSize="12" Controls:TextBoxHelper.ClearTextButton="True"  />
+        <TextBox  Grid.Row="0" IsReadOnly="True" Text="{Binding PrecioPorMayor}" Margin="430,398,10,329" FontFamily="Arial" FontSize="12" Controls:TextBoxHelper.ClearTextButton="True"  />
+        <TextBox  Grid.Row="0" IsReadOnly="True" Text="{Binding Existencia}" Margin="430,462,10,263" FontFamily="Arial" FontSize="12" Controls:TextBoxHelper.ClearTextButton="True"  />
+
     </Grid>
 </Controls:MetroWindow>

@@ -26,5 +26,10 @@ namespace ProyectoFinalBackend.View
             InitializeComponent();
             this.DataContext = new ClienteViewModel(this); 
         }
+        public ClienteView(GenerarVentaView instancia)
+        {
+            InitializeComponent();
+            this.DataContext = new ClienteViewModel(this,instancia);
+        }
     }
 }
