@@ -24,10 +24,11 @@ namespace ProyectoFinalBackend.ModelView
         private ObservableCollection<GenerarVenta> _GenerarVenta;
         private ObservableCollection<Producto> _Producto;
         ProductoModel producto = new ProductoModel();
+        DetalleFacturaModel detalleFactura = new DetalleFacturaModel();
+        FacturaModel factura = new FacturaModel();
         private GenerarVenta _SelectGenerarVenta;
         private Producto _SelectProducto;
         private GenerarVentaView _mensajes;
-        private bool _IsReadOnlyDescripcion = true;
         private string _Nit;
         private string _Total;
         private string _UrlImagen;
@@ -39,9 +40,6 @@ namespace ProyectoFinalBackend.ModelView
         private string _PrecioPorMayor;
         private string _Existencia;
         List<GenerarVenta> nuevoGenerarVenta= new List<GenerarVenta>();
-
-
-
         #endregion
 
         #region Constructores
@@ -339,6 +337,45 @@ namespace ProyectoFinalBackend.ModelView
 
         public async void save()
         {
+            bool isEmpty = GenerarVentas.Any();
+            if (isEmpty && !Mensajes.Nit.Text.ToString().Equals("") )
+            {
+                try
+                {
+                    var resultado = await Mensajes.ShowMessageAsync("Agregando", Mensajes.Nit.Text.ToString(),
+                    MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
+                    {
+                        AffirmativeButtonText = "Si",
+                        NegativeButtonText = "No",
+                        AnimateShow = true,
+                        AnimateHide = false
+                    });
+                    if (resultado == MessageDialogResult.Affirmative)
+                    {
+                        Factura ultimoRegistro = factura.Save(Mensajes.Nit.Text.ToString(), DateTime.Today, Convert.ToDecimal(this.Total));
+                        foreach (GenerarVenta row in GenerarVentas.ToList())
+                        {
+                            detalleFactura.Save(ultimoRegistro.Numerofactura, row.CodigoProducto, row.Cantidad, row.PrecioUnitario, 0);
+                            this.GenerarVentas.Remove(row);
+                        }
+                        this.Total = "0";
+                        this.Nit = "";
+                        await Mensajes.ShowMessageAsync("Exito", "Factura Ingresada correctamente");
+                    }
+                    else
+                    {
+                        await Mensajes.ShowMessageAsync("Error", "No se ingreso ninguna factura");
+                    }
+                }
+                catch (Exception e)
+                {
+                    await Mensajes.ShowMessageAsync("Error", e.Message);
+                }                
+            }
+            else
+            {
+              await Mensajes.ShowMessageAsync("Error", "Debe de haber registros para facturar y elegir un cliente");
+            }
  
         }
 

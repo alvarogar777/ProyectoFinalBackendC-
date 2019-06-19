@@ -116,6 +116,8 @@
     <Compile Include="ModelView\UserViewModel.cs" />
     <Compile Include="Model\CategoriaModel.cs" />
     <Compile Include="Model\ClienteModel.cs" />
+    <Compile Include="Model\DetalleFacturaModel.cs" />
+    <Compile Include="Model\FacturaModel.cs" />
     <Compile Include="Model\InventarioModel.cs" />
     <Compile Include="Model\ProductoModel.cs" />
     <Compile Include="Model\ProveedorModel.cs" />
