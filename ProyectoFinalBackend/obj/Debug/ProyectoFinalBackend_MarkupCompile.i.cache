@@ -16,5 +16,5 @@ C:\Users\usuario\Documents\Visual Studio 2015\Projects\ProyectoFinalBackend\Proy
 24396654271
 MainWindow.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;View\GenerarVentaView.xaml;View\TipoEmpaqueView.xaml;View\CategoriaView.xaml;View\ClienteView.xaml;View\CompraView.xaml;View\DetalleCompraView.xaml;View\DetalleFacturaView.xaml;View\EmailClienteView.xaml;View\EmailProveedorView.xaml;View\FacturaView.xaml;View\InventarioView.xaml;View\ProductoView.xaml;View\ProveedorView.xaml;View\RoleView.xaml;View\TelefonoClienteView.xaml;View\TelefonoProveedorView.xaml;View\UserRoleView.xaml;View\UserView.xaml;
 
-False
+True
 

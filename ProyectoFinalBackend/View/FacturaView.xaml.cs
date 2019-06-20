@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using ProyectoFinalBackend.ModelView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +19,12 @@ namespace ProyectoFinalBackend.View
     /// <summary>
     /// Lógica de interacción para FacturaView.xaml
     /// </summary>
-    public partial class FacturaView : Window
+    public partial class FacturaView : MetroWindow
     {
         public FacturaView()
         {
             InitializeComponent();
+            this.DataContext = new FacturaViewModel(this);
         }
     }
 }

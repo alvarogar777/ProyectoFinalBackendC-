@@ -108,7 +108,7 @@
             </Controls:Tile.Effect>
             <Image Source="Imagenes/compra.png" Width="145" Height="119" />
         </Controls:Tile>
-        <Controls:Tile CommandParameter="Factura" Command="{Binding Instancia}"  IsEnabled="True" Title="Factura" TitleFontSize="21" TiltFactor="7" FontFamily="Arial Black" FontSize="14" Margin="44,321,1016,139" FontWeight="Bold" BorderThickness="4,2,0,4" Opacity="0.80" Cursor="Hand">
+        <Controls:Tile CommandParameter="Factura" Command="{Binding Instancia}"  IsEnabled="True" Title="Facturas" TitleFontSize="21" TiltFactor="7" FontFamily="Arial Black" FontSize="14" Margin="44,321,1016,139" FontWeight="Bold" BorderThickness="4,2,0,4" Opacity="0.80" Cursor="Hand">
             <Controls:Tile.Effect>
                 <DropShadowEffect ShadowDepth="9" BlurRadius="10"/>
             </Controls:Tile.Effect>
