@@ -49,6 +49,11 @@ namespace ProyectoFinalBackend.Model
 
         }
 
+        public List<Producto> ShowList2()
+        {
+            List<Producto> nuevo = db.Productos.ToList();
+            return nuevo;
+        }
         public async Task<bool> Add(ProductoView mensaje)
         {
             var resultado = await mensaje.ShowMessageAsync("Agregando", "Desea Agregar una nuevo Producto",
@@ -107,6 +112,15 @@ namespace ProyectoFinalBackend.Model
             updatProducto.Imagen = imagen;
             updatProducto.NombreImagen = nombreImagen;
 
+            this.db.Entry(updatProducto).State = EntityState.Modified;
+            this.db.SaveChanges();
+            return updatProducto;
+        }
+
+        public dynamic updateExistencia(int codigoProducto, int existencia)
+        {
+            var updatProducto = this.db.Productos.Find(codigoProducto);
+            updatProducto.Existencia = updatProducto.Existencia - existencia;
             this.db.Entry(updatProducto).State = EntityState.Modified;
             this.db.SaveChanges();
             return updatProducto;

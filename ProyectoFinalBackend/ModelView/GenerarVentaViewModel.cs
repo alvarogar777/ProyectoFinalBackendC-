@@ -14,6 +14,7 @@ using MahApps.Metro.Controls.Dialogs;
 using ProyectoFinalBackend.View;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Data;
 
 namespace ProyectoFinalBackend.ModelView
 {
@@ -26,6 +27,7 @@ namespace ProyectoFinalBackend.ModelView
         ProductoModel producto = new ProductoModel();
         DetalleFacturaModel detalleFactura = new DetalleFacturaModel();
         FacturaModel factura = new FacturaModel();
+        ProductoModel productoUpdate = new ProductoModel();
         private GenerarVenta _SelectGenerarVenta;
         private Producto _SelectProducto;
         private GenerarVentaView _mensajes;
@@ -73,11 +75,18 @@ namespace ProyectoFinalBackend.ModelView
         public ObservableCollection<Producto> Productos
         {
             get
-            {
+            { 
                 this._Producto = producto.ShowList;
                 return this._Producto;
             }
-            set { this._Producto = value; }
+            set {
+                if (this._Producto == null)
+                {
+                    _Producto = value;
+
+                }
+                ChangeNotify("Productos");
+            }
         }
         #endregion
 
@@ -308,24 +317,27 @@ namespace ProyectoFinalBackend.ModelView
             decimal totalTemporal=0;
             if (this.SelectProducto != null && !this.CantidadProducto.Equals(""))
             {
-                try
+                if (Convert.ToInt16(this.CantidadProducto)<=Convert.ToInt16(this.Existencia))
                 {
-                    if (Convert.ToInt16(this.CantidadProducto) <= 11) { nuevo.PrecioUnitario = Convert.ToDecimal(this.PrecioUnitario); }
-                    else if (Convert.ToInt16(this.CantidadProducto) <= 15) { nuevo.PrecioUnitario = Convert.ToDecimal(this.PrecioPorDocena); }
-                    else if (Convert.ToInt16(this.CantidadProducto) > 15) { nuevo.PrecioUnitario = Convert.ToDecimal(this.PrecioPorMayor); }
-                    nuevo.CodigoProducto = this.SelectProducto.CodigoProducto;
-                    nuevo.Descripcion = this.SelectProducto.Descripcion;
-                    nuevo.Cantidad = Convert.ToInt16(this.CantidadProducto);
-                    nuevo.Total = (Convert.ToInt16(this.CantidadProducto) * nuevo.PrecioUnitario);
-                    this.GenerarVentas.Add(nuevo);
-
-                    foreach (GenerarVenta row in GenerarVentas.ToList())
+                    try
                     {
-                        totalTemporal = totalTemporal + Convert.ToDecimal(row.Total);
+                        if (Convert.ToInt16(this.CantidadProducto) <= 11) { nuevo.PrecioUnitario = Convert.ToDecimal(this.PrecioUnitario); }
+                        else if (Convert.ToInt16(this.CantidadProducto) <= 15) { nuevo.PrecioUnitario = Convert.ToDecimal(this.PrecioPorDocena); }
+                        else if (Convert.ToInt16(this.CantidadProducto) > 15) { nuevo.PrecioUnitario = Convert.ToDecimal(this.PrecioPorMayor); }
+                        nuevo.CodigoProducto = this.SelectProducto.CodigoProducto;
+                        nuevo.Descripcion = this.SelectProducto.Descripcion;
+                        nuevo.Cantidad = Convert.ToInt16(this.CantidadProducto);
+                        nuevo.Total = (Convert.ToInt16(this.CantidadProducto) * nuevo.PrecioUnitario);
+                        this.GenerarVentas.Add(nuevo);
+
+                        foreach (GenerarVenta row in GenerarVentas.ToList())
+                        {
+                            totalTemporal = totalTemporal + Convert.ToDecimal(row.Total);
+                        }
+                        this.Total = totalTemporal.ToString();
                     }
-                    this.Total = totalTemporal.ToString();
+                    catch (Exception e) { System.Windows.Forms.MessageBox.Show(e.ToString()); }
                 }
-                catch (Exception e) { System.Windows.Forms.MessageBox.Show(e.ToString()); }
             }
             else
             {
@@ -357,10 +369,29 @@ namespace ProyectoFinalBackend.ModelView
                         {
                             detalleFactura.Save(ultimoRegistro.Numerofactura, row.CodigoProducto, row.Cantidad, row.PrecioUnitario, 0);
                             this.GenerarVentas.Remove(row);
+                            productoUpdate.updateExistencia(row.CodigoProducto,row.Cantidad);                           
                         }
+                        foreach (Producto row in Productos.ToList())
+                        {                        
+                            this.Productos.Remove(row);                            
+                        }
+
+
+                        //CollectionViewSource.GetDefaultView(this.Productos).Refresh();
+
+                        ProductoModel actualizado = new ProductoModel();
                         this.Total = "0";
                         this.Nit = "";
+                        this.PrecioPorDocena = "";
+                        this.PrecioPorMayor = "";
+                        this.PrecioUnitario = "";
+                        this.Cantidad ="";
+                        this.Existencia = "";
                         await Mensajes.ShowMessageAsync("Exito", "Factura Ingresada correctamente");
+                        foreach (Producto row in actualizado.ShowList2())
+                        {
+                            this.Productos.Add(row);
+                        }
                     }
                     else
                     {
