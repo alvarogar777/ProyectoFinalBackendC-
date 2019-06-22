@@ -74,9 +74,9 @@ namespace ProyectoFinalBackend.ModelView
             {
                 new TelefonoProveedorView().ShowDialog();
             }
-            else if (parameter.Equals("DetalleFactura"))
+            else if (parameter.Equals("GenerarCompra"))
             {
-                new DetalleFacturaView().ShowDialog();
+                new GenerarCompraView().ShowDialog();
             }
             else if (parameter.Equals("Clientes"))
             {

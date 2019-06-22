@@ -41,7 +41,7 @@ namespace ProyectoFinalBackend.ModelView
         private string _PrecioPorDocena;
         private string _PrecioPorMayor;
         private string _Existencia;
-        List<GenerarVenta> nuevoGenerarVenta= new List<GenerarVenta>();
+        List<GenerarVenta> nuevoGenerarVenta = new List<GenerarVenta>();
         #endregion
 
         #region Constructores
