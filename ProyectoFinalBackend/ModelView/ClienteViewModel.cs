@@ -400,7 +400,7 @@ namespace ProyectoFinalBackend.ModelView
                         }
                         catch (Exception e)
                         {
-                            await Mensajes.ShowMessageAsync("Error", "Nit ya ingresado");
+                            await Mensajes.ShowMessageAsync(e.Message, "Nit ya ingresado");
                         }
                         borrarCampos();
                         isEnableSave();

@@ -26,5 +26,11 @@ namespace ProyectoFinalBackend.View
             InitializeComponent();
             this.DataContext = new ProveedorViewModel(this);
         }
+        public ProveedorView(GenerarCompraView instancia)
+        {
+            InitializeComponent();
+            this.DataContext = new ProveedorViewModel(this,instancia);
+        }
+
     }
 }

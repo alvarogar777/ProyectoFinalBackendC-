@@ -37,6 +37,7 @@ namespace ProyectoFinalBackend.ModelView
         private string _PrecioPorMayor;
         private string _Existencia;
         private string _Precio;
+        private string _NumeroDocumento;
         List<DetalleCompra> nuevoGenerarVenta = new List<DetalleCompra>();
         #endregion
 
@@ -63,6 +64,7 @@ namespace ProyectoFinalBackend.ModelView
                     {
                         this._GenerarCompra.Add(elemento);
                     }
+
                 }
                 return this._GenerarCompra;
             }
@@ -73,6 +75,7 @@ namespace ProyectoFinalBackend.ModelView
             get
             {
                 this._Producto = producto.ShowList;
+
                 return this._Producto;
             }
             set
@@ -113,7 +116,7 @@ namespace ProyectoFinalBackend.ModelView
         }
 
 
-        public DetalleCompra SelectGenerarVenta
+        public DetalleCompra SelectGenerarCompra
         {
             get { return this._SelectGenerarCompra; }
             set
@@ -285,6 +288,16 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+
+        public string NumeroDocumento
+        {
+            get { return _NumeroDocumento; }
+            set {
+                _NumeroDocumento = value;
+                ChangeNotify("NumeroDocumento");
+            }
+        }
+
         #endregion
 
         #region Metodos Enabled y validacion de campos
@@ -295,33 +308,31 @@ namespace ProyectoFinalBackend.ModelView
             this.Nit = "";
             this.Total = "0";
             this.CantidadProducto = "";
-            this.PrecioUnitario = "";
-            this.PrecioPorDocena = "";
-            this.PrecioPorMayor = "";
             this.Existencia = "";
+            this.NumeroDocumento = "";
             //this.GenerarVentas.IndexOf(null);
         }
 
-        public bool validacionCampos()
+        public bool ValidacionCampos()
         {
             bool resultado = true;
-            //if (Mensajes.Nit.Text.Equals(""))
-            //{
-            //    System.Windows.Forms.MessageBox.Show("Falta Nit");
-            //    resultado = false;
-            //}
-            //else if (Mensajes.Total.Text.Equals(""))
-            //{
-            //    System.Windows.Forms.MessageBox.Show("Falta Total");
-            //    resultado = false;
-            //}
+            if (Mensajes.Nit.Text.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta Nit");
+                resultado = false;
+            }
+            else if (Mensajes.Total.Text.Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Falta Total");
+                resultado = false;
+            }
 
             return resultado;
         }
         #endregion
 
         #region Metodos Add, Update, Delete, Save
-        public void add()
+        public void Add()
         {
             DetalleCompra nuevo = new DetalleCompra();
             decimal totalTemporal = 0;
@@ -356,152 +367,150 @@ namespace ProyectoFinalBackend.ModelView
             this.CantidadProducto = "";
         }
 
-        //public async void save()
-        //{
-        //    bool isEmpty = GenerarVentas.Any();
-        //    if (isEmpty && !Mensajes.Nit.Text.ToString().Equals(""))
-        //    {
-        //        try
-        //        {
-        //            var resultado = await Mensajes.ShowMessageAsync("Agregando", Mensajes.Nit.Text.ToString(),
-        //            MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
-        //            {
-        //                AffirmativeButtonText = "Si",
-        //                NegativeButtonText = "No",
-        //                AnimateShow = true,
-        //                AnimateHide = false
-        //            });
-        //            if (resultado == MessageDialogResult.Affirmative)
-        //            {
-        //                Factura ultimoRegistro = compra.Save(Mensajes.Nit.Text.ToString(), DateTime.Today, Convert.ToDecimal(this.Total));
-        //                foreach (GenerarVenta row in GenerarVentas.ToList())
-        //                {
-        //                    detalleCompra.Save(ultimoRegistro.Numerofactura, row.CodigoProducto, row.Cantidad, row.PrecioUnitario, 0);
-        //                    this.GenerarVentas.Remove(row);
-        //                    productoUpdate.updateExistencia(row.CodigoProducto, row.Cantidad);
-        //                }
-        //                foreach (Producto row in Productos.ToList())
-        //                {
-        //                    this.Productos.Remove(row);
-        //                }
+        public async void Save()
+        {
+            bool isEmpty = GenerarCompras.Any();
+                if (isEmpty && !Mensajes.Nit.Text.ToString().Equals("")&& !this.NumeroDocumento.Equals(""))
+                {
+                    try
+                    {
+                        Convert.ToInt16(this.NumeroDocumento);
+                        var resultado = await Mensajes.ShowMessageAsync("Agregando", "Desea agregar una nueva compra",
+                        MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
+                        {
+                            AffirmativeButtonText = "Si",
+                            NegativeButtonText = "No",
+                            AnimateShow = true,
+                            AnimateHide = false
+                        });
+                        if (resultado == MessageDialogResult.Affirmative)
+                        {
+                            Compra ultimoRegistro = compra.Save(Convert.ToInt16(this.NumeroDocumento),Convert.ToInt16(Mensajes.Nit.Text.ToString()), DateTime.Today, Convert.ToDecimal(this.Total));
+                            foreach (DetalleCompra row in GenerarCompras.ToList())
+                            {
+                                detalleCompra.Save(ultimoRegistro.IdCompra, row.CodigoProducto, row.Cantidad, row.Precio,row.SubTotal);
+                                this.GenerarCompras.Remove(row);
+                                productoUpdate.updateIncrementoExistencia(row.CodigoProducto, row.Cantidad);
+                            }
+                            foreach (Producto row in Productos.ToList())
+                            {
+                                this.Productos.Remove(row);
+                            }
+                        
+                            //CollectionViewSource.GetDefaultView(this.Productos).Refresh();
+                            ProductoModel actualizado = new ProductoModel();
+                            this.Total = "0";
+                            this.Nit = "";
+                            this.NumeroDocumento = "";
+                            this.Existencia = "";
+                            await Mensajes.ShowMessageAsync("Exito", "Compra Ingresada correctamente");
+                            foreach (Producto row in actualizado.ShowList2())
+                            {
+                                this.Productos.Add(row);
+                            }
+                        }
+                        else
+                        {
+                            await Mensajes.ShowMessageAsync("Error", "No se ingreso ninguna compra");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        await Mensajes.ShowMessageAsync("Numero Documento debe ser de tipo numero entero", e.Message);
+                    }
+                }
+                else
+                {
+                    await Mensajes.ShowMessageAsync("Error", "Debe de haber registros para la compra y elegir un proveedor");
+                }
+                         
 
+        }
 
-        //                //CollectionViewSource.GetDefaultView(this.Productos).Refresh();
+        public async void Cancel()
+        {
+            var respuesta = await Mensajes.ShowMessageAsync("Esta seguro de eliminar la factura", "Eliminar",
+            MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
+            {
+                AffirmativeButtonText = "Si",
+                NegativeButtonText = "No",
+                AnimateShow = true,
+                AnimateHide = false
+            });
 
-        //                ProductoModel actualizado = new ProductoModel();
-        //                this.Total = "0";
-        //                this.Nit = "";
-        //                this.PrecioPorDocena = "";
-        //                this.PrecioPorMayor = "";
-        //                this.PrecioUnitario = "";
-        //                this.Cantidad = "";
-        //                this.Existencia = "";
-        //                await Mensajes.ShowMessageAsync("Exito", "Factura Ingresada correctamente");
-        //                foreach (Producto row in actualizado.ShowList2())
-        //                {
-        //                    this.Productos.Add(row);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                await Mensajes.ShowMessageAsync("Error", "No se ingreso ninguna factura");
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            await Mensajes.ShowMessageAsync("Error", e.Message);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        await Mensajes.ShowMessageAsync("Error", "Debe de haber registros para facturar y elegir un cliente");
-        //    }
+            if (respuesta == MessageDialogResult.Affirmative)
+            {
+                try
+                {
+                    foreach (DetalleCompra row in GenerarCompras.ToList())
+                    {
+                        this.GenerarCompras.Remove(row);
+                    }
+                    this.Total = "0";
+                    this.Nit = "";
+                    this.NumeroDocumento = "";
 
-        //}
+                }
+                catch (Exception e)
+                {
+                    System.Windows.MessageBox.Show(e.Message);
+                }
 
-        //public async void cancel()
-        //{
-        //    var respuesta = await Mensajes.ShowMessageAsync("Esta seguro de eliminar la factura", "Eliminar",
-        //    MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
-        //    {
-        //        AffirmativeButtonText = "Si",
-        //        NegativeButtonText = "No",
-        //        AnimateShow = true,
-        //        AnimateHide = false
-        //    });
+                await Mensajes.ShowMessageAsync("Exito", "Factura eliminada Correctamente");
+            }
 
-        //    if (respuesta == MessageDialogResult.Affirmative)
-        //    {
-        //        try
-        //        {
-        //            foreach (GenerarVenta row in GenerarVentas.ToList())
-        //            {
-        //                this.GenerarVentas.Remove(row);
-        //            }
-        //            this.Total = "0";
-        //            this.Nit = "";
+            else
+            {
+                await Mensajes.ShowMessageAsync("Eliminar", "No se elimino ningun registro");
 
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            System.Windows.MessageBox.Show(e.Message);
-        //        }
+            }
+        }
 
-        //        await Mensajes.ShowMessageAsync("Exito", "Factura eliminada Correctamente");
-        //    }
+        public async void Delete()
+        {
+            decimal totalTemporal = 0;
+            if (this.SelectGenerarCompra != null)
+            {
+                var respuesta = await Mensajes.ShowMessageAsync("Esta seguro de eliminar el registro", "Eliminar",
+                MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
+                {
+                    AffirmativeButtonText = "Si",
+                    NegativeButtonText = "No",
+                    AnimateShow = true,
+                    AnimateHide = false
+                });
 
-        //    else
-        //    {
-        //        await Mensajes.ShowMessageAsync("Eliminar", "No se elimino ningun registro");
+                if (respuesta == MessageDialogResult.Affirmative)
+                {
+                    try
+                    {
+                        this.GenerarCompras.Remove(this.SelectGenerarCompra);
+                        foreach (DetalleCompra row in GenerarCompras.ToList())
+                        {
+                            totalTemporal = totalTemporal + Convert.ToDecimal(row.SubTotal);
+                        }
+                        this.Total = totalTemporal.ToString();
 
-        //    }
-        //}
+                    }
+                    catch (Exception e)
+                    {
+                        System.Windows.MessageBox.Show(e.Message);
+                    }
 
-        //public async void delete()
-        //{
-        //    decimal totalTemporal = 0;
-        //    if (this.SelectGenerarVenta != null)
-        //    {
-        //        var respuesta = await Mensajes.ShowMessageAsync("Esta seguro de eliminar el registro", "Eliminar",
-        //        MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
-        //        {
-        //            AffirmativeButtonText = "Si",
-        //            NegativeButtonText = "No",
-        //            AnimateShow = true,
-        //            AnimateHide = false
-        //        });
+                    await Mensajes.ShowMessageAsync("Exito", "Registro eliminado Correctamente");
+                }
 
-        //        if (respuesta == MessageDialogResult.Affirmative)
-        //        {
-        //            try
-        //            {
-        //                this.GenerarVentas.Remove(this.SelectGenerarVenta);
-        //                foreach (GenerarVenta row in GenerarVentas.ToList())
-        //                {
-        //                    totalTemporal = totalTemporal + Convert.ToDecimal(row.Total);
-        //                }
-        //                this.Total = totalTemporal.ToString();
+                else
+                {
+                    await Mensajes.ShowMessageAsync("Eliminar", "No se elimino ningun registro");
 
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                System.Windows.MessageBox.Show(e.Message);
-        //            }
-
-        //            await Mensajes.ShowMessageAsync("Exito", "Registro eliminado Correctamente");
-        //        }
-
-        //        else
-        //        {
-        //            await Mensajes.ShowMessageAsync("Eliminar", "No se elimino ningun registro");
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        await Mensajes.ShowMessageAsync("Eliminar", "Debe seleccionar un registro");
-        //    }
-        //}
+                }
+            }
+            else
+            {
+            await Mensajes.ShowMessageAsync("Eliminar", "Debe seleccionar un registro");
+            }
+        }
 
 
 
@@ -530,24 +539,24 @@ namespace ProyectoFinalBackend.ModelView
         {
             if (parameter.Equals("Add"))
             {
-                add();
+                Add();
                 //Mensajes.DescripcionFocus.Focus();
             }
             if (parameter.Equals("Save"))
             {
-                //save();
+                Save();
             }
             else if (parameter.Equals("Cancel"))
             {
-                //cancel();
+                Cancel();
             }
             else if (parameter.Equals("Delete"))
             {
-                //delete();
+                Delete();
             }
-            else if (parameter.Equals("AgregarCodigoCategoria"))
+            else if (parameter.Equals("AgregarCodigoCliente"))
             {
-                //new ClienteView(Mensajes).ShowDialog();
+                new ProveedorView(Mensajes).ShowDialog();
             }
 
         }

@@ -23,6 +23,7 @@ namespace ProyectoFinalBackend.ModelView
         ProveedorModel proveedor = new ProveedorModel();
         private Proveedor _SelectProveedor;
         private ProveedorView _mensajes;
+        private GenerarCompraView _AgregandoNit;
         private ACCION accion = ACCION.NINGUNO;
         private bool _IsReadOnlyDescripcion = true;
         private string _Nit;
@@ -30,6 +31,7 @@ namespace ProyectoFinalBackend.ModelView
         private string _Direccion;
         private string _Pagina_Web;
         private string _ContactoPrincipal;
+        private string _IsvisibleAdd;
         private bool _IsEnabledAdd = true;
         private bool _IsEnabledDelete = true;
         private bool _IsEnableUpdate = true;
@@ -45,6 +47,16 @@ namespace ProyectoFinalBackend.ModelView
             this.Instancia = this;
             borrarCampos();
             Mensajes = proveedorView;
+            IsvisibleAdd = "Hidden";
+        }
+
+        public ProveedorViewModel(ProveedorView proveedorView, GenerarCompraView generarCompraView)
+        {
+            this.Instancia = this;
+            borrarCampos();
+            Mensajes = proveedorView;
+            this.AgregandoNit = generarCompraView;
+            IsvisibleAdd = "Visible";
         }
         #endregion
 
@@ -147,6 +159,30 @@ namespace ProyectoFinalBackend.ModelView
             {
                 this._ContactoPrincipal = value;
                 ChangeNotify("ContactoPrincipal");
+            }
+        }
+        public GenerarCompraView AgregandoNit
+        {
+            get
+            {
+                return _AgregandoNit;
+            }
+            set
+            {
+                this._AgregandoNit= value;
+            }
+        }
+
+        public string IsvisibleAdd
+        {
+            get
+            {
+                return _IsvisibleAdd;
+            }
+            set
+            {
+                this._IsvisibleAdd = value;
+                ChangeNotify("IsvisibleAdd");
             }
         }
 
@@ -465,6 +501,19 @@ namespace ProyectoFinalBackend.ModelView
                 await Mensajes.ShowMessageAsync("Eliminar", "Debe seleccionar un registro");
             }
         }
+        public void AgregarNitProveedor()
+        {
+            if (this.SelectProveedor != null)
+            {
+                AgregandoNit.Nit.Text = this.SelectProveedor.CodigoProveedor.ToString();
+
+                Mensajes.ShowMessageAsync("Agregar", "Codigo proveedor Agregado exitosamente en la ventana Compras");
+            }
+            else
+            {
+                Mensajes.ShowMessageAsync("Actualizar", "Debe seleccionar un registro");
+            }
+        }
 
         #endregion
 
@@ -509,6 +558,10 @@ namespace ProyectoFinalBackend.ModelView
             {
                 isEnableCancel();
                 borrarCampos();
+            }
+            else if (parameter.Equals("AgregarProveedor"))
+            {
+                AgregarNitProveedor();
             }
         }
         #endregion

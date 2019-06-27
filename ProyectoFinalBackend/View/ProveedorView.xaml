@@ -43,7 +43,7 @@
               Grid.Row="1"
               FontFamily="Arial"
            
-              AutoGenerateColumns="False" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3">
+              AutoGenerateColumns="False" Margin="0.4,93,26.8,110" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn 
                                     ElementStyle="{DynamicResource MetroDataGridCheckBox}"
@@ -59,7 +59,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="166.2,54.2,160.4,0.4" Cursor="Hand" Grid.Column="1" ForceCursor="True">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="166.4,90,160.8,0" Cursor="Hand" Grid.Column="1" ForceCursor="True">
             <Button Content="Agregar"       IsEnabled="{Binding IsEnabledAdd }"     Command="{Binding Instancia}"   CommandParameter="Add"    Background="#FF192648" BorderBrush="Black" BorderThickness="1"/>
             <Button Content="Actualizar"    IsEnabled="{Binding IsEnableUpdate }"   Command="{Binding Instancia}"   CommandParameter="Update" BorderBrush="Black"    Background="#FF334619"/>
             <Button Content="Eliminar"      IsEnabled="{Binding IsEnabledDelete }"  Command="{Binding Instancia}"   CommandParameter="Delete" Background="#FF730F0F" BorderBrush="Black" />
@@ -67,6 +67,7 @@
             <Button Content="Cancelar"          IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
         </StackPanel>
         <Label x:Name="label" Grid.ColumnSpan="3" Content="Proveedores" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
+        <Button Content="Agregar Proveedor a compra" Visibility="{Binding IsvisibleAdd}" IsEnabled="True"   Command="{Binding Instancia}"   CommandParameter="AgregarProveedor" BorderBrush="Black"    Background="Red" Margin="233.4,48,229.8,107" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="1"/>
 
 
     </Grid>

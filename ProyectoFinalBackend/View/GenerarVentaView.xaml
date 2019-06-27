@@ -70,7 +70,7 @@
             <Button Content="Cancelar Factura"        Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="118" RenderTransformOrigin="0.634,0.476"/>
         </StackPanel>
         <Label x:Name="label" Content="Facturas" HorizontalAlignment="Left" Height="38" Margin="536,10,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True" Grid.ColumnSpan="2"/>
-        <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoCategoria"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="463,81,0,651" Grid.Column="1"/>
+        <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoCliente"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="463,81,0,651" Grid.Column="1"/>
         <Image x:Name="Imagen" Source="{Binding UrlImagen}"  HorizontalAlignment="Left" Height="189" Margin="25,15,0,0" VerticalAlignment="Top" Width="218"/>
         <Label Content="Cantidad" Grid.Row="0" Margin="248,85,240,645" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True" RenderTransformOrigin="0.629,1.177"/>
         <TextBox  Grid.Row="0" IsReadOnly="False" Text="{Binding CantidadProducto}" Margin="397,81,0,645" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese cantidad"  />

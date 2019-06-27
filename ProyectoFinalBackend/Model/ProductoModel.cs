@@ -125,5 +125,14 @@ namespace ProyectoFinalBackend.Model
             this.db.SaveChanges();
             return updatProducto;
         }
+
+        public dynamic updateIncrementoExistencia(int codigoProducto, int existencia)
+        {
+            var updatProducto = this.db.Productos.Find(codigoProducto);
+            updatProducto.Existencia = updatProducto.Existencia + existencia;
+            this.db.Entry(updatProducto).State = EntityState.Modified;
+            this.db.SaveChanges();
+            return updatProducto;
+        }
     }
 }

@@ -31,5 +31,6 @@ namespace ProyectoFinalBackend.View
             InitializeComponent();
             this.DataContext = new ClienteViewModel(this,instancia);
         }
+
     }
 }

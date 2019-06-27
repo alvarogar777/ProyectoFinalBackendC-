@@ -38,8 +38,10 @@
         <TextBox  Grid.Row="0" IsReadOnly="False" Text="{Binding Precio}" Margin="397,150,568,585" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese precio"  />
         <Label Content="Nit"  Margin="698,85,345,656.6" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
         <Label Content="Total" Grid.Row="0" Margin="701,140,350,595.6" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <Label Content="Numero Documento" Grid.Row="0" Margin="701,204,350,531" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
         <TextBox x:Name="Nit" Grid.Row="0" IsReadOnly="True" Text="{Binding Nit}" Margin="855,81,110,656" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Nit"  />
         <TextBox x:Name="Total" Grid.Row="0" IsReadOnly="True" Text="{Binding Total}" Margin="855,143,110,595" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Total"  />
+        <TextBox x:Name="NumeroDocumento" Grid.Row="0" IsReadOnly="False" Text="{Binding NumeroDocumento}" Margin="855,204,110,534" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="NumeroDocumento"  />
         <DataGrid x:Name="GenerarCompra"
             SelectedItem="{Binding SelectGenerarCompra}"
             ItemsSource="{Binding GenerarCompras}"
@@ -59,9 +61,12 @@
                 <DataGridTextColumn Header="TOTAL" Binding="{Binding SubTotal}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoCategoria"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="1095,81,0,660.6"/>
-        <Label Content="Numero Documento" Grid.Row="0" Margin="701,204,350,531" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
-        <TextBox x:Name="NumeroDocumento" Grid.Row="0" IsReadOnly="True" Text="{Binding NumeroDocumento}" Margin="855,204,110,534" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="NumeroDocumento"  />
+        <Button Content="Agregar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="AgregarCodigoCliente"    Background="#FF192648" BorderBrush="Black" BorderThickness="1" Margin="1095,81,0,660.6"/>
+        <StackPanel Orientation="Horizontal" Margin="766,700,40,0" Cursor="Hand" ForceCursor="True">
+            <Button Content="Eliminar Registro"       Command="{Binding Instancia}"   CommandParameter="Delete" Background="#FF730F0F" BorderBrush="Black" />
+            <Button Content="Guardar factura"         Command="{Binding Instancia}"   CommandParameter="Save"   BorderBrush="Black"    Background="#FF949F12" Margin="0,0,0,0.2"/>
+            <Button Content="Cancelar Factura"        Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="118" RenderTransformOrigin="0.634,0.476"/>
+        </StackPanel>
 
     </Grid>
 </Controls:MetroWindow>

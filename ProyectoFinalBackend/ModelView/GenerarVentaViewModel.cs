@@ -48,7 +48,7 @@ namespace ProyectoFinalBackend.ModelView
         public GenerarVentaViewModel(GenerarVentaView generarVentaView)
         {
             this.Instancia = this;
-            borrarCampos();
+            BorrarCampos();
             Mensajes = generarVentaView;
         }
 
@@ -280,7 +280,7 @@ namespace ProyectoFinalBackend.ModelView
         #region Metodos Enabled y validacion de campos
 
 
-        public void borrarCampos()
+        public void BorrarCampos()
         {
             this.Nit= "";
             this.Total = "0";
@@ -292,7 +292,7 @@ namespace ProyectoFinalBackend.ModelView
             //this.GenerarVentas.IndexOf(null);
         }
 
-        public bool validacionCampos()
+        public bool ValidacionCampos()
         {
             bool resultado = true;
             if (Mensajes.Nit.Text.Equals(""))
@@ -311,7 +311,7 @@ namespace ProyectoFinalBackend.ModelView
         #endregion
 
         #region Metodos Add, Update, Delete, Save
-        public  void add()
+        public  void Add()
         {
             GenerarVenta nuevo = new GenerarVenta();
             decimal totalTemporal=0;
@@ -347,14 +347,14 @@ namespace ProyectoFinalBackend.ModelView
             this.CantidadProducto = ""; 
         }
 
-        public async void save()
+        public async void Save()
         {
             bool isEmpty = GenerarVentas.Any();
             if (isEmpty && !Mensajes.Nit.Text.ToString().Equals("") )
             {
                 try
                 {
-                    var resultado = await Mensajes.ShowMessageAsync("Agregando", Mensajes.Nit.Text.ToString(),
+                    var resultado = await Mensajes.ShowMessageAsync("Agregando", "Desea generar una nueva factura",
                     MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
                     {
                         AffirmativeButtonText = "Si",
@@ -410,7 +410,7 @@ namespace ProyectoFinalBackend.ModelView
  
         }
 
-        public async void cancel()
+        public async void Cancel()
         {
                 var respuesta = await Mensajes.ShowMessageAsync("Esta seguro de eliminar la factura", "Eliminar",
                 MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
@@ -448,7 +448,7 @@ namespace ProyectoFinalBackend.ModelView
                 }
             }
 
-        public async void delete()
+        public async void Delete()
         {
             decimal totalTemporal = 0;
             if (this.SelectGenerarVenta != null)
@@ -521,22 +521,22 @@ namespace ProyectoFinalBackend.ModelView
         {
             if (parameter.Equals("Add"))
             {
-                add();
+                Add();
                 //Mensajes.DescripcionFocus.Focus();
             }
             if (parameter.Equals("Save"))
             {
-                save();
+                Save();
             }
             else if (parameter.Equals("Cancel"))
             {
-                cancel();
+                Cancel();
             }
             else if (parameter.Equals("Delete"))
             {
-                delete();
+                Delete();
             }
-            else if (parameter.Equals("AgregarCodigoCategoria"))
+            else if (parameter.Equals("AgregarCodigoCliente"))
             {
                 new ClienteView(Mensajes).ShowDialog();
             }
