@@ -1,0 +1,55 @@
+﻿<Controls:MetroWindow x:Class="ProyectoFinalBackend.View.FacturaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoFinalBackend.View"
+        mc:Ignorable="d"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Facturas" Height="800" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
+    <Grid>
+        <DataGrid Name="Factura"
+              SelectedItem="{Binding Path=SelectFactura}"
+              ItemsSource="{Binding Path=Facturas}"
+              FontFamily="Arial"
+           
+              AutoGenerateColumns="False" Margin="50,82,640,174">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn 
+                                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    Header="Seleccionar"
+                                    Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                    />
+                <DataGridTextColumn Header="NUMERO FACTURA" Binding="{Binding Numerofactura}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="NIT" Binding="{Binding Nit}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="FECHA" Binding="{Binding Fecha}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="TOTAL" Binding="{Binding Total }" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Margin="140,631,820,0" Cursor="Hand" ForceCursor="True">
+            <Button Content="Ver detalle factura"        Command="{Binding Instancia}"   CommandParameter="VerDetalle" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.8" Width="224" RenderTransformOrigin="0.634,0.476"/>
+        </StackPanel>
+        <Label x:Name="label" Content="Facturas" HorizontalAlignment="Left" Height="38" Margin="536,10,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="DetalleFactura"
+            SelectedItem="{Binding SelectDetalleFactura}"
+            ItemsSource="{Binding DetalleFacturas}"
+            FontFamily="Arial"
+           
+            AutoGenerateColumns="False" Margin="645,152,45,174">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="COD DETALLE" Binding="{Binding CodigoDetalle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="NUM FACTURA" Binding="{Binding NumeroFactura}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="COD PRODUCTO" Binding="{Binding CodigoProducto}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Total" Grid.Row="0" Margin="701,82,350,654" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <TextBox x:Name="Total" Grid.Row="0" IsReadOnly="True" Text="{Binding Total}" Margin="855,85,110,653" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Total"  />
+
+    </Grid>
+</Controls:MetroWindow>
