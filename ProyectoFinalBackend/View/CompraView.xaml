@@ -1,12 +1,56 @@
-﻿<Window x:Class="ProyectoFinalBackend.View.CompraView"
+﻿<Controls:MetroWindow x:Class="ProyectoFinalBackend.View.CompraView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoFinalBackend.View"
         mc:Ignorable="d"
-        Title="CompraView" Height="450" Width="800">
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Compras" Height="800" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
     <Grid>
-        <Label x:Name="label" Content="{Binding IdCompra}" HorizontalAlignment="Left" Margin="346,177,0,0" VerticalAlignment="Top" Width="111"/>
+        <Label x:Name="label" Content="Compras" HorizontalAlignment="Left" Height="38" Margin="536,10,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True" Grid.ColumnSpan="2"/>
+        <DataGrid Name="Compra"
+              SelectedItem="{Binding Path=SelectCompra}"
+              ItemsSource="{Binding Path=Compras}"
+              FontFamily="Arial"
+           
+              AutoGenerateColumns="False" Margin="50,82,640,174">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn 
+                                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    Header="Seleccionar"
+                                    Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                    />
+                <DataGridTextColumn Header="ID COMPRA" Binding="{Binding IdCompra}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="NO DOC" Binding="{Binding NumeroDocumento}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="PROVEEDOR" Binding="{Binding CodigoProveedor}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="FECHA" Binding="{Binding Fecha}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Margin="140,631,820,0" Cursor="Hand" ForceCursor="True">
+            <Button Content="Ver detalle Compra"        Command="{Binding Instancia}"   CommandParameter="verDetalle" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.8" Width="224" RenderTransformOrigin="0.634,0.476"/>
+        </StackPanel>
+
+        <DataGrid x:Name="DetalleCompra"
+            SelectedItem="{Binding SelectDetalleCompra}"
+            ItemsSource="{Binding DetalleCompras}"
+            FontFamily="Arial"
+           
+            AutoGenerateColumns="False" Margin="645,152,45,174">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="ID DETALLE" Binding="{Binding  IdDetalle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="COD PRODUCTO" Binding="{Binding CodigoProducto}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="SUBTOTAL" Binding="{Binding SubTotal}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Total" Grid.Row="0" Margin="701,82,350,654" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <TextBox x:Name="Total" Grid.Row="0" IsReadOnly="True" Text="{Binding Total}" Margin="855,85,110,653" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Total"  />
+
     </Grid>
-</Window>
+</Controls:MetroWindow>

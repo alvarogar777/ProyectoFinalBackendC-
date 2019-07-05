@@ -113,7 +113,7 @@ namespace ProyectoFinalBackend.ModelView
                 {
                     this._SelectFactura = value;
 
-                    ChangeNotify("SelectCategoria");
+                    ChangeNotify("SelectFactura");
                 }
             }
         }

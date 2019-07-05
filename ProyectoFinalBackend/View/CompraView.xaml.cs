@@ -11,18 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using ProyectoFinalBackend.ModelView;
 namespace ProyectoFinalBackend.View
 {
     /// <summary>
     /// Lógica de interacción para CompraView.xaml
     /// </summary>
-    public partial class CompraView : Window
+    public partial class CompraView : MetroWindow
     {
         public CompraView()
         {
             InitializeComponent();
-            this.DataContext = new CompraViewModel();
+            this.DataContext = new CompraViewModel(this);
         }
     }
 }
