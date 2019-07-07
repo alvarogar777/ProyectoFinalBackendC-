@@ -20,8 +20,10 @@ namespace ProyectoFinalBackend.ModelView
         #region Campos
         private ClienteViewModel _Instancia;
         private ObservableCollection<Cliente> _Cliente;
+        private ObservableCollection<TelefonoCliente> _TelefonoClientes;
         ClienteModel cliente = new ClienteModel();
         private Cliente _SelectCliente;
+        private TelefonoCliente _SelectTelefono;
         private ClienteView _mensajes;
         private GenerarVentaView _AgregandoCodigo;
         private ACCION accion = ACCION.NINGUNO;
@@ -37,8 +39,9 @@ namespace ProyectoFinalBackend.ModelView
         private bool _IsEnableUpdate = true;
         private bool _IsEnableSave = false;
         private bool _IsEnableCancel = false;
-
-
+        private string _NitTelefono;
+        private string _TelefonoCliente;
+        private string _Descripcion;
         #endregion
 
         #region Constructores
@@ -69,6 +72,18 @@ namespace ProyectoFinalBackend.ModelView
                 return this._Cliente;
             }
             set { this._Cliente = value; }
+        }
+        public ObservableCollection<TelefonoCliente> Telefonos
+        {
+            get
+            {
+                if (this._TelefonoClientes == null)
+                {
+                    this._TelefonoClientes = new ObservableCollection<TelefonoCliente>();
+                }     
+                return this._TelefonoClientes;
+            }
+            set { this._TelefonoClientes = value; }
         }
         #endregion
 
@@ -253,6 +268,35 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+        public string NitTelefono
+        {
+            get { return this._NitTelefono; }
+            set { this._NitTelefono = value;
+                ChangeNotify("NitTelefono");
+            }
+        }
+        public string TelefonoCliente
+        {
+            get { return this._TelefonoCliente; }
+            set
+            {
+                this._TelefonoCliente = value;
+                ChangeNotify("TelefonoCliente");
+            }
+        }
+
+        public string Descripcion
+        {
+            get { return this._Descripcion; }
+            set
+            {
+                this._Descripcion = value;
+                ChangeNotify("Descripcion");
+            }
+        }
+
+
+
         public Cliente SelectCliente
         {
             get { return this._SelectCliente; }
@@ -265,10 +309,30 @@ namespace ProyectoFinalBackend.ModelView
                     this.Direccion = value.Direccion;
                     this.Dpi = value.Dpi;
                     this.Nombre = value.Nombre;
+                    this.NitTelefono = value.Nit;
+                    FindListTelefono(value.Nit);                   
+                    
                     ChangeNotify("SelectCliente");
                 }
             }
         }
+        public TelefonoCliente SelectTelefono
+        {
+            get { return this._SelectTelefono; }
+            set
+            {
+                if (value != null)
+                {
+                    this._SelectTelefono = value;
+                    this.TelefonoCliente = value.Numero;
+                    this.Descripcion = value.Descripcion;
+                    ChangeNotify("SelectTelefono");
+                }
+            }
+        }
+
+
+
         #endregion
 
         #region Metodos Enabled y validacion de campos
@@ -367,6 +431,9 @@ namespace ProyectoFinalBackend.ModelView
             this.Dpi = "";
             this.Direccion = "";
             this.Nombre = "";
+            this.NitTelefono = "";
+            this.TelefonoCliente = "";
+            this.Descripcion = "";
             this.Clientes.IndexOf(null);
         }
         #endregion
@@ -382,7 +449,7 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
-        public async void save()
+        public async void Save()
         {
             switch (this.accion)
             {
@@ -402,7 +469,8 @@ namespace ProyectoFinalBackend.ModelView
                         {
                             await Mensajes.ShowMessageAsync(e.Message, "Nit ya ingresado");
                         }
-                        borrarCampos();
+                        //borrarCampos();
+                        this.NitTelefono = this.Nit;
                         isEnableSave();
                     }
                     break;
@@ -441,7 +509,7 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
-        public void update()
+        public void Update()
         {
             if (this.SelectCliente != null)
             {
@@ -453,7 +521,7 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
-        public async void delete()
+        public async void Delete()
         {
             if (this.SelectCliente != null)
             {
@@ -522,6 +590,58 @@ namespace ProyectoFinalBackend.ModelView
             }
         }
 
+        public async void SaveTelefono()
+        {
+            if (this.NitTelefono.Equals("") || this.TelefonoCliente.Equals(""))
+            {
+                await Mensajes.ShowMessageAsync("Error","Escoja algun cliente e ingrese numero");
+            }
+            else
+            {
+                TelefonoClienteModel telefonoCliente = new TelefonoClienteModel();
+                this.Telefonos.Add(telefonoCliente.Save(this.TelefonoCliente,this.Descripcion,this.NitTelefono));
+                await Mensajes.ShowMessageAsync("Exito", "Telefono ingresado exitosamente");
+                this.TelefonoCliente = "";
+                this.Descripcion = "";
+            }
+        }
+
+        public void FindListTelefono(string nit)
+        {
+            TelefonoClienteModel telefonoCliente = new TelefonoClienteModel();
+            TelefonoCliente telefono = new TelefonoCliente();
+            Telefonos.Clear();
+            foreach (TelefonoCliente item in telefonoCliente.FindList(nit))
+            {
+                this.Telefonos.Add(item);
+            }
+            this.TelefonoCliente = "";
+            this.Descripcion = "";
+        }
+
+        public void UpdateTelefono()
+        {
+            if (this.SelectTelefono!=null)
+            {
+                TelefonoClienteModel telefono = new TelefonoClienteModel();
+                telefono.Update(SelectTelefono.CodigoTelefono,this.TelefonoCliente,this.Descripcion);
+                FindListTelefono(this.Nit);
+                this.TelefonoCliente = "";
+                this.Descripcion = "";
+            }
+        }
+
+        public void DeleteTelefono()
+        {
+            if (this.SelectTelefono!=null)
+            {
+                TelefonoClienteModel telefono = new TelefonoClienteModel();
+                telefono.Delete(this.SelectTelefono.CodigoTelefono);
+                FindListTelefono(this.Nit);
+                this.TelefonoCliente = "";
+                this.Descripcion = "";
+            }
+        }
         #endregion
 
         #region Eventos
@@ -552,15 +672,15 @@ namespace ProyectoFinalBackend.ModelView
             }
             if (parameter.Equals("Save"))
             {
-                save();
+                Save();
             }
             else if (parameter.Equals("Update"))
             {
-                update();
+                Update();
             }
             else if (parameter.Equals("Delete"))
             {
-                delete();
+                Delete();
             }
             else if (parameter.Equals("Cancel"))
             {
@@ -570,6 +690,18 @@ namespace ProyectoFinalBackend.ModelView
             else if (parameter.Equals("AgregarCliente"))
             {
                 AgregarCodigoCategoria();
+            }
+            else if (parameter.Equals("SaveTelefono"))
+            {
+                SaveTelefono();
+            }
+            else if (parameter.Equals("UpdateTelefono"))
+            {
+                UpdateTelefono();
+            }
+            else if (parameter.Equals("DeleteTelefono"))
+            {
+                DeleteTelefono();
             }
         }
         #endregion

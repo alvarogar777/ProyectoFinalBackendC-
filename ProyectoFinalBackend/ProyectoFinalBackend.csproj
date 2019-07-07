@@ -124,6 +124,7 @@
     <Compile Include="Model\InventarioModel.cs" />
     <Compile Include="Model\ProductoModel.cs" />
     <Compile Include="Model\ProveedorModel.cs" />
+    <Compile Include="Model\TelefonoClienteModel.cs" />
     <Compile Include="Model\TipoEmpaqueModel.cs" />
     <Compile Include="View\GenerarCompraView.xaml.cs">
       <DependentUpon>GenerarCompraView.xaml</DependentUpon>

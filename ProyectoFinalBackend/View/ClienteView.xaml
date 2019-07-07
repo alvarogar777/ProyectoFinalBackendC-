@@ -18,24 +18,20 @@
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="129*"></ColumnDefinition>
-            <ColumnDefinition Width="318*"/>
-            <ColumnDefinition Width="69*"></ColumnDefinition>
-            <ColumnDefinition Width="256*"/>
-            <ColumnDefinition Width="123*"/>
+
         </Grid.ColumnDefinitions>
-        <Label x:Name="label" Grid.ColumnSpan="3" Content="Clientes" Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="218.2,0,0,0" VerticalAlignment="Top" Width="199" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
+        <Label x:Name="label" Content="Clientes" HorizontalAlignment="Left" Height="38" Margin="395,0,0,0" VerticalAlignment="Top" Width="160" FontFamily="Arial Black" FontSize="18" ForceCursor="True"/>
 
-        <Label Content="Nit" Grid.Row="0" Grid.Column="1" Margin="0.4,32,120.6,126" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
-        <Label Content="DPI" Grid.Row="0" Grid.Column="1" Margin="0.4,74,120.6,84" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
-        <Label Content="Nombre" Grid.Row="0" Grid.Column="1" Margin="0.4,116,120.6,41" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
-        <Label Content="Dirección" Grid.Row="0" Grid.Column="1" Margin="0.4,152,120.6,5" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <Label Content="Nit" Grid.Row="0" Margin="10,35,740,123" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <Label Content="DPI" Grid.Row="0" Margin="10,77,740,81" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <Label Content="Nombre" Grid.Row="0" Margin="10,119,740,38" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <Label Content="Dirección" Grid.Row="0" Margin="10,155,740,2" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
 
 
-        <TextBox Name="NitFocus" Grid.Row="0" IsReadOnly="{Binding IsReadOnlyNit}" Text="{Binding Nit}" Margin="0.2,53,9.6,104.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit" Grid.Column="3"  />
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Dpi}" Margin="0.2,87,9.6,71.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese DPI" Grid.Column="3"  />
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Nombre}" Margin="0.2,120,9.6,38.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nombre" Grid.Column="3"  />
-        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Direccion}" Margin="0.2,153,9.6,5.4" Grid.ColumnSpan="3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una Dirección" Grid.Column="3"  />
+        <TextBox Name="NitFocus" Grid.Row="0" IsReadOnly="{Binding IsReadOnlyNit}" Text="{Binding Nit}" Margin="164,55,500,102" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nit"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Dpi}" Margin="164,89,500,69" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese DPI"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Nombre}" Margin="164,122,500,36" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un Nombre"  />
+        <TextBox Grid.Row="0" IsReadOnly="{Binding IsReadOnlyDescripcion}" Text="{Binding Direccion}" Margin="164,155,500,3" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una Dirección"  />
 
         <!--<DataGrid ItemsSource="{Binding Clientes}" Grid.ColumnSpan="5" Margin="1.761,61.6,23.6,141.4" Grid.RowSpan="2" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="Black" Grid.Row="1" FontFamily="Arial" ForceCursor="True" Grid.Column="1"  />-->
         <DataGrid Name="cliente"
@@ -44,7 +40,7 @@
               Grid.Row="1"
               FontFamily="Arial"
            
-              AutoGenerateColumns="False" Margin="22.2,61.6,4.8,141.4" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3">
+              AutoGenerateColumns="False" Margin="25,62,455,115" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn 
                                     ElementStyle="{DynamicResource MetroDataGridCheckBox}"
@@ -58,15 +54,50 @@
                 <DataGridTextColumn Header="DIRECCION" Binding="{Binding Direccion}" IsReadOnly="True"></DataGridTextColumn>
 
 
+
+
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="166.2,54.2,160.4,0.4" Cursor="Hand" Grid.Column="1" ForceCursor="True">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="75,85,485,0" Cursor="Hand" ForceCursor="True">
             <Button Content="Agregar"       IsEnabled="{Binding IsEnabledAdd }"     Command="{Binding Instancia}"   CommandParameter="Add"    Background="#FF192648" BorderBrush="Black" BorderThickness="1"/>
             <Button Content="Actualizar"    IsEnabled="{Binding IsEnableUpdate }"   Command="{Binding Instancia}"   CommandParameter="Update" BorderBrush="Black"    Background="#FF334619"/>
             <Button Content="Eliminar"      IsEnabled="{Binding IsEnabledDelete }"  Command="{Binding Instancia}"   CommandParameter="Delete" Background="#FF730F0F" BorderBrush="Black" />
             <Button Content="Guardar"       IsEnabled="{Binding IsEnableSave}"     Command="{Binding Instancia}"   CommandParameter="Save"   BorderBrush="Black"    Background="#FF949F12" Margin="0,0,0,0.2"/>
-            <Button Content="Cancelar"          IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.4" Width="52"/>
+            <Button Content="Cancelar"          IsEnabled="{Binding IsEnableCancel }"   Command="{Binding Instancia}"   CommandParameter="Cancel" BorderBrush="Black"    Background="#FF1E7463" Margin="0,0,0,0.8" Width="65"/>
         </StackPanel>
-        <Button Content="Agregar Cliente a factura" Visibility="{Binding IsvisibleAdd}" IsEnabled="True"   Command="{Binding Instancia}"   CommandParameter="AgregarCliente" BorderBrush="Black"    Background="Red" Margin="233.4,12,229.8,143" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="Agregar Cliente a factura" Visibility="{Binding IsvisibleAdd}" IsEnabled="True"   Command="{Binding Instancia}"   CommandParameter="AgregarCliente" BorderBrush="Black"    Background="Red" Margin="25,15,455,140" Grid.Row="1"/>
+
+
+        <Label Content="Nit" Grid.Row="0" Margin="485,30,265,128" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <Label Content="Numero" Grid.Row="0" Margin="485,72,265,86" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <Label Content="Descripcion" Grid.Row="0" Margin="485,114,265,43" Controls:ControlsHelper.ContentCharacterCasing="Upper" FontSize="18" FontFamily="Arial Black" ForceCursor="True"/>
+        <TextBox Grid.Row="0" IsReadOnly="True" Text="{Binding NitTelefono}" Margin="640,40,24,117" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Nit"  />
+        <TextBox Grid.Row="0" IsReadOnly="False" Text="{Binding TelefonoCliente}" Margin="640,74,24,84" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Numero"  />
+        <TextBox Grid.Row="0" IsReadOnly="False" Text="{Binding Descripcion}" Margin="640,107,24,51" FontFamily="Arial" FontSize="16" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese una descripcion"  />
+
+        <DataGrid Name="telefonoCliente"
+              SelectedItem="{Binding Path=SelectTelefono}"
+              ItemsSource="{Binding Path=Telefonos}"
+              FontFamily="Arial"
+           
+              AutoGenerateColumns="False" Margin="485,149,24,125" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn 
+                                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    Header="Seleccionar"
+                                    Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                    />
+                <DataGridTextColumn Header="NIT" Binding="{Binding Nit}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="NUMERO" Binding="{Binding Numero}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="DESCRIPCION" Binding="{Binding Descripcion}" IsReadOnly="True"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="585,75,100,84" Cursor="Hand" ForceCursor="True">
+            <Button Content="Actualizar"    IsEnabled="True"   Command="{Binding Instancia}"   CommandParameter="UpdateTelefono" BorderBrush="Black"    Background="#FF334619"/>
+            <Button Content="Guardar"       IsEnabled="True"     Command="{Binding Instancia}"   CommandParameter="SaveTelefono"   BorderBrush="Black"    Background="#FF949F12" Margin="0,0,0,0.2"/>
+            <Button Content="Eliminar"      IsEnabled="True"  Command="{Binding Instancia}"   CommandParameter="DeleteTelefono" Background="#FF730F0F" BorderBrush="Black" Margin="0,0,0,-0.2" />
+        </StackPanel>
     </Grid>
 </Controls:MetroWindow>
